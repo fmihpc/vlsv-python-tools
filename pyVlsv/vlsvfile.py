@@ -27,7 +27,7 @@
    .. code-block:: python
 
       # Example:
-      import pytools as pt
+      import analysator as pt
       pt.vlsvfile.
       #press [tab] -> get the functions
 

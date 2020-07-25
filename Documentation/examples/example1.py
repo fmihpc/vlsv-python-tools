@@ -21,7 +21,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # 
 
-import pytools as pt
+import analysator as pt
 
 f = pt.vlsvfile.VlasiatorReader('fullf.0000002.vlsv')
 grid = pt.grid.Particlepusherinterface(f, 'rho')

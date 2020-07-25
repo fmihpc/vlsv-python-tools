@@ -37,7 +37,7 @@ def cell_time_evolution( vlsvReader_list, variables, cellids, units="" ):
 
        .. code-block:: python
 
-          import pytools as pt; import pylab as pl
+          import analysator as pt; import pylab as pl
           # Example of usage:
           time_data = pt.calculations.cell_time_evolution( vlsvReader_list=[VlsvReader("bulk.000.vlsv"), VlsvReader("bulk.001.vlsv"), VlsvReader("bulk.002.vlsv")], variables=["rho", "Pressure", "B"], cellids=[2,4], units=["N", "Pascal", "T"] )
 

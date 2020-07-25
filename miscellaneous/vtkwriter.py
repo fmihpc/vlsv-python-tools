@@ -33,7 +33,7 @@ def write_vtk_file( filename, point_data ):
        .. code-block:: python
 
           # Example usage:
-          import pytools as pt
+          import analysator as pt
           filename = "test.vtk"
           point_data = [[0.,0.,0.], [1.,1.,1.], [2.,2.,2.], [3.,3.,3.], [4.,4.,4.]]
           pt.miscellaneous.write_vtk_file( filename=filename, point_data=point_data )

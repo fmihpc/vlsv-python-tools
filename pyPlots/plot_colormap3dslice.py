@@ -22,7 +22,7 @@
 # 
 
 import matplotlib
-import pytools as pt
+import analysator as pt
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
@@ -137,7 +137,7 @@ def plot_colormap3dslice(filename=None,
     :kword nooverwrite: Set to only perform actions if the target output file does not yet exist                    
 
     :kword var:         variable to plot, e.g. rho, RhoBackstream, beta, Temperature, MA, Mms, va, vms,
-                        E, B, v, V or others. Accepts any variable known by analysator/pytools.
+                        E, B, v, V or others. Accepts any variable known by analysator.
                         Per-population variables are simply given as "proton/rho" etc
     :kword operator:    Operator to apply to variable: None, x, y, or z. Vector variables return either
                         the queried component, or otherwise the magnitude. 

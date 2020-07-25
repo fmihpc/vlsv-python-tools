@@ -23,7 +23,7 @@
 
 import numpy as np
 import scipy as sp
-import pytools as pt
+import analysator as pt
 from scipy import interpolate
 
 def dynamic_field_tracer( vlsvReader_list, x0, max_iterations, dx):

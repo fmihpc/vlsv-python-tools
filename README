@@ -13,7 +13,7 @@ echo "export PYTHONPATH=$PYTHONPATH:$HOME/analysator" >> $HOME/.bashrc
 #################################################
 module load mayavi2   # Load mayavi2 dependencies, if necessary (e.g. CSC system)
 ipython               # Start ipython
-import pytools as pt  # Import Analysator
+import analysator as pt  # Import Analysator
 
 
 # Navigating functions:

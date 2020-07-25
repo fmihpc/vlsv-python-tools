@@ -24,7 +24,7 @@
 ''' This is a module that includes most, if not all, calculations within the analysator. Please type "." and press tab to see which functions this module includes.
 
 Example:
-import pytools as pt
+import analysator as pt
 
 pt.calculations.
 #press tab

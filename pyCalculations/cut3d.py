@@ -45,7 +45,7 @@ def cut3d( vlsvReader, xmin, xmax, ymin, ymax, zmin, zmax, variable, operator="p
        .. code-block:: python
 
           Example:
-          import pytools as pt
+          import analysator as pt
           f = pt.vlsvfile.VlsvReader('example.vlsv')
           three_cut = pt.calculations.cut3d( vlsvReader=f, xmin=1e6, xmax=4e6, ymin=1e6, xmax=4e6, zmin=0, zmax=0, variable="rho" )
           import numpy as np

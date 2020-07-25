@@ -37,7 +37,7 @@ def generate_custom_velocity_grid( vlsvReader, blocks_and_values, iso_surface=Fa
 
       # Example usage:
 
-      import pytools as pt
+      import analysator as pt
 
       #vlsvReader = pt.vlsvfile.VlsvReader("example.vlsv")
 

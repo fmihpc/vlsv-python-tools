@@ -36,7 +36,7 @@ import matplotlib
 matplotlib.use('Agg') # this is needed for offline plotting
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
-import pytools as pt
+import analysator as pt
 import numpy as np
 import operator as oper
 import re

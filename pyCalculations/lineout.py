@@ -43,7 +43,7 @@ def lineout( vlsvReader, point1, point2, variable, operator="pass",interpolation
        .. code-block:: python
 
           # Example:
-          import pytools as pt # import analysator
+          import analysator as pt # import analysator
 
           vlsvReader = pt.vlsvfile.VlsvReader(\"testfile.vlsv\") # Open a vlsv file
           lineout_rho = pt.calculations.lineout( vlsvReader=vlsvReader, point1=[1.0e5, 1.0e6, 0], point2=[2.0e5, 2.0e6, 0], variable="rho", interpolation_order=1, points=100 )

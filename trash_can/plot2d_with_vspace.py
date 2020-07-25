@@ -38,7 +38,7 @@ def vlsv_plot2d_with_vspace(vlsvReader,varName="rho",withDistr=0,Nstride=97,Nbin
  :returns: nothing
  .. code-block:: python
  # Example usage:
-   import pytools as pt
+   import analysator as pt
    fvlsv = pt.vlsvfile.VlsvReader("/path/to/run/bulk.0003000.vlsv")
    pt.plot.vlsv_plot2d_with_vspace(fvlsv,varName="rho",lengthUnit=6371e3)
    pt.plot.vlsv_plot2d_with_vspace(fvlsv,varName="rho",lengthUnit=6371e3,withDistr=1,Nstride=97,xFigSize=15,yFigSize=14)

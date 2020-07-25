@@ -21,7 +21,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # 
 
-import pytools as pt
+import analysator as pt
 import numpy as np
 
 def vlsv_intpol_file(file_vlsv,file_orbit,varlist,file_output):
@@ -33,7 +33,7 @@ def vlsv_intpol_file(file_vlsv,file_orbit,varlist,file_output):
        :returns: none
        .. code-block:: python
           # Example:
-          import pytools as pt
+          import analysator as pt
           pt.calculations.vlsv_intpol_file("state00040000.vlsv","orbit.dat",["cellB","n_H+sw_ave"],"output.dat")
    '''
    f=pt.vlsvfile.VlsvReader(file_name=file_vlsv)

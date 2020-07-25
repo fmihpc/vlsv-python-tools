@@ -28,7 +28,7 @@
 
    .. code-block:: python
 
-      import pytools as pt
+      import analysator as pt
       pt.miscellaneous.
       #press tab -> get the functions
 

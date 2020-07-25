@@ -26,7 +26,7 @@
    .. code-block:: python
 
       # Example:
-      import pytools as pt
+      import analysator as pt
       pt.pt.
       #press [tab] -> get the functions
 
