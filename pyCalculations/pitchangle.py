@@ -102,7 +102,7 @@ def pitch_angles( vlsvReader,
          elif vlsvReader.check_variable(pop+"/vg_V"):
             frame = vlsvReader.read_variable(pop+'/vg_V', cellid)
          else:
-            logging.info("Error extracting plasma frame velocity!")
+            raise ValueError("Error extracting plasma frame velocity! Please supply a vector instead.")
       elif len(plasmaframe)==3: # Assume it's a vector
          frame = plasmaframe
 
@@ -124,12 +124,10 @@ def pitch_angles( vlsvReader,
             pop="avgs"
             #logging.info("Auto-switched to population avgs")
          else:
-            logging.info("Unable to detect population "+pop+" in .vlsv file!")
-            sys.exit()
+            raise ValueError("Unable to detect population "+pop+" in .vlsv file!")
    else:
       if not vlsvReader.check_population(pop):
-         logging.info("Unable to detect population "+pop+" in .vlsv file!")
-         sys.exit()
+         raise ValueError("Unable to detect population "+pop+" in .vlsv file!")
 
    # Read temperature for thermal speed
    if (vcut is True or vcutmax is True):
@@ -196,7 +194,7 @@ def pitch_angles( vlsvReader,
    cond1 = (v_norms > vcutoff)
    cond2 = (v_norms < vcutoffmax)
    condition = np.logical_and(cond1,cond2)
-   logging.info(cond1.shape,cond2.shape,condition.shape)
+   # logging.info(cond1.shape,cond2.shape,condition.shape)
    # Get the velocity cells above cutoff speed
    #vcellids_nonsphere = np.extract(condition, vcellids)
    # Get the avgs
@@ -233,8 +231,7 @@ def pitch_angles( vlsvReader,
          except:
             pass
       if not os.access(outputdir, os.W_OK):
-         logging.info("No write access for directory "+outputdir+"! Exiting.")
-         return
+         raise IOError("No write access for directory "+outputdir+"! Exiting.")
 
 
       outfilewrite=open(outputfile,'w')
