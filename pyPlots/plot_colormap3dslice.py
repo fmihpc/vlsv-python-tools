@@ -374,7 +374,7 @@ def plot_colormap3dslice(filename=None,
     slicestr='_slice'
     if not isinstance(normal, str):
         if len(normal!=3):
-            logging.info("Error in interpreting normal ",normal)
+            logging.info("Error in interpreting normal " + str(normal))
             exit
     else:
         if normal[0]=='x':
@@ -582,7 +582,7 @@ def plot_colormap3dslice(filename=None,
 
         # Verify data shape
         if np.ndim(datamap)==0:
-            logging.info("Error, read only single value from vlsv file!",datamap.shape)
+            logging.info("Error, read only single value from vlsv file! datamap.shape being " + str(datamap.shape))
             return -1
 
         if var.startswith('fg_'):
@@ -973,22 +973,22 @@ def plot_colormap3dslice(filename=None,
     # Now, if map is a vector or tensor, reduce it down
     if np.ndim(datamap)==3: # vector
         if datamap.shape[2]!=3:
-            logging.info("Error, expected array of 3-element vectors, found array of shape ",datamap.shape)
+            logging.info("Error, expected array of 3-element vectors, found array of shape " + str(datamap.shape))
             return -1
         # take magnitude of three-element vectors
         datamap = np.linalg.norm(datamap, axis=-1)
     if np.ndim(datamap)==4: # tensor
         if datamap.shape[2]!=3 or datamap.shape[3]!=3:
             # This may also catch 3D simulation fsgrid variables
-            logging.info("Error, expected array of 3x3 tensors, found array of shape ",datamap.shape)
+            logging.info("Error, expected array of 3x3 tensors, found array of shape " + str(datamap.shape))
             return -1
         # take trace
         datamap = datamap[:,:,0,0]+datamap[:,:,1,1]+datamap[:,:,2,2]
     if np.ndim(datamap)>=5: # Too many dimensions
-        logging.info("Error, too many dimensions in datamap, found array of shape ",datamap.shape)
+        logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap.shape))
         return -1
     if np.ndim(datamap)!=2: # Too many dimensions
-        logging.info("Error, too many dimensions in datamap, found array of shape ",datamap.shape)
+        logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap.shape))
         return -1
         
     # Scale final generated datamap if requested

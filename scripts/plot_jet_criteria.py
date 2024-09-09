@@ -108,9 +108,9 @@ def jetcontours(ax, XmeshXY,YmeshXY, pass_maps):
     Plaschke = thisrho*(thisvx**2)/(swrho*(swvx**2))
     ArcherHorbury = np.divide(thispdyn,avgpdyn)
     Karlsson = np.divide(thisrho,avgrho)
-    logging.info("Plaschke ",np.amin(Plaschke), np.amax(Plaschke))
-    logging.info("ArcherHorbury ",np.amin(ArcherHorbury), np.amax(ArcherHorbury))
-    logging.info("Karlsson ",np.amin(Karlsson), np.amax(Karlsson))
+    logging.info("Plaschke " + str(np.amin(Plaschke)) + " " + str(np.amax(Plaschke)))
+    logging.info("ArcherHorbury " + str(np.amin(ArcherHorbury)) + " " + str(np.amax(ArcherHorbury)))
+    logging.info("Karlsson " + str(np.amin(Karlsson)) + " " + str(np.amax(Karlsson)))
 
     # draw contours                                                                                                     
     contour_cr1 = ax.contour(XmeshXY,YmeshXY,Plaschke,[0.25],

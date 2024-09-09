@@ -348,7 +348,7 @@ def plot_isosurface(filename=None,
 
     # Verify data shape
     if np.ndim(surf_datamap)==0:
-        logging.info("Error, read only single surface variable value from vlsv file!",surf_datamap.shape)
+        logging.info("Error, read only single surface variable value from vlsv file! surf_datamap.shape being " + str(surf_datamap.shape))
         return -1
     
 
@@ -776,7 +776,7 @@ def plot_isosurface(filename=None,
                     try:
                         plt.savefig(savefigname,dpi=300, bbox_inches=bbox_inches, pad_inches=savefig_pad)
                     except:
-                        logging.info("Error:", sys.exc_info())
+                        logging.info("Error:" + str(sys.exc_info()))
                         logging.info("Error with attempting to save figure, sometimes due to matplotlib LaTeX integration.")
                         logging.info("Usually removing the title should work, but this time even that failed.")                        
                         savechange = -1
@@ -1334,7 +1334,7 @@ def plot_neutral_sheet(filename=None,
 
         # Verify data shape
         if np.ndim(datamap)==0:
-            logging.info("Error, read only single value from vlsv file!",datamap.shape)
+            logging.info("Error, read only single value from vlsv file! datamap.shape being " + str(datamap.shape))
             return -1
         elif np.ndim(datamap)==3: # Vector variable
             datamap = np.linalg.norm(datamap, axis=-1)
@@ -1521,22 +1521,22 @@ def plot_neutral_sheet(filename=None,
     # Now, if map is a vector or tensor, reduce it down
     if np.ndim(datamap)==3: # vector
         if datamap.shape[2]!=3:
-            logging.info("Error, expected array of 3-element vectors, found array of shape ",datamap.shape)
+            logging.info("Error, expected array of 3-element vectors, found array of shape " + str(datamap.shape))
             return -1
         # take magnitude of three-element vectors
         datamap = np.linalg.norm(datamap, axis=-1)
     if np.ndim(datamap)==4: # tensor
         if datamap.shape[2]!=3 or datamap.shape[3]!=3:
             # This may also catch 3D simulation fsgrid variables
-            logging.info("Error, expected array of 3x3 tensors, found array of shape ",datamap.shape)
+            logging.info("Error, expected array of 3x3 tensors, found array of shape " + str(datamap.shape))
             return -1
         # take trace
         datamap = datamap[:,:,0,0]+datamap[:,:,1,1]+datamap[:,:,2,2]
     if np.ndim(datamap)>=5: # Too many dimensions
-        logging.info("Error, too many dimensions in datamap, found array of shape ",datamap.shape)
+        logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap.shape))
         return -1
     if np.ndim(datamap)!=2: # Too many dimensions
-        logging.info("Error, too many dimensions in datamap, found array of shape ",datamap.shape)
+        logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap.shape))
         return -1
 
     # Scale final generated datamap if requested
@@ -2048,7 +2048,7 @@ def sheet_coordinate_finder(f, boxcoords, axisunit, cellids, reflevel, indexids,
 
     # Verify data shape
     if np.ndim(sheet_datamap)==0:
-        logging.info("Error, read only single Bx value from vlsv file!",sheet_datamap.shape)
+        logging.info("Error, read only single Bx value from vlsv file! sheet_datamap.shape being "+ str(sheet_datamap.shape))
         return -1
     
 

@@ -80,7 +80,7 @@ class VlsvWriter(object):
       try:
          self.__fptr = open(self.file_name,"ab")
       except Exception as e:
-         logging.info("ERROR:",e)
+         logging.info("ERROR: "+str(e))
          raise e
       #Get XML offset and copy over the xml tree from the vlsvreader 
       fptr_read = open(self.file_name,"rb")

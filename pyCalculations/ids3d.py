@@ -22,7 +22,7 @@ def ids3d(cellids, depth, reflevel,
   for i in range(reflevel+1):
     depth = int(pro*size*2**i) + 1 # goes from 1 to Nmax
     if depth > int(size*2**i):
-      logging.info("depth error ",depth,i)
+      logging.info("depth error, depth = " +str(depth) +"; i = "+str(i))
       depth -= 1
     depths.append(depth)
 

@@ -89,7 +89,7 @@ class VlsvParticles(object):
       logging.info("tag = MESH")
       for child in self.__xml_root:
          if child.tag == "MESH" and "name" in child.attrib:
-            logging.info("   ", child.attrib["name"])
+            logging.info("   " + str(child.attrib["name"]))
 
    def read_particles_all(self):
       ''' Read particle pusher data from the open vlsv file.

@@ -230,9 +230,9 @@ def vSpaceReducer(vlsvReader, cid, slicetype, normvect, pop="proton",
             logging.info("Error in rotation: NXrot not in x-y-plane")
         for count,testvect in enumerate(testrot2):
             if abs(1.0-np.linalg.norm(testvect))>1.e-3:
-                logging.info("Error in rotation: testvector ",count,testvect," not a unit vector")
+                logging.info("Error in rotation: testvector " + str((count,testvect)) + " not a unit vector")
             if abs(1.0-np.amax(testvect))>1.e-3:
-                logging.info("Error in rotation: testvector ",count,testvect," largest component is not unity")
+                logging.info("Error in rotation: testvector " + str((count,testvect)) + " largest component is not unity")
 
     else:
         logging.info("Error finding rotation of v-space!")

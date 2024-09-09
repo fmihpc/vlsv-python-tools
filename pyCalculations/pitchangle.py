@@ -210,7 +210,7 @@ def pitch_angles( vlsvReader,
 
    rho_summed    = np.sum(avgs)
    rho_nonsphere = np.sum(avgs_nonsphere)
-   logging.info("rho",rho_summed, rho_nonsphere)
+   logging.info("rho: " + str(rho_summed) + ", rho_nonsphere: " + str(rho_nonsphere))
 
    if outputfile!=None or outputdir!=None: # Save output to file
       # Generate filename

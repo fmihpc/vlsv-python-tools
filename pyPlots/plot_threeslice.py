@@ -1059,7 +1059,7 @@ def plot_threeslice(filename=None,
 
         # Verify data shape
         if np.ndim(datamap)==0:
-            logging.info("Error, read only single value from vlsv file!",datamap.shape)
+            logging.info("Error, read only single value from vlsv file! datamap.shape being " + str(datamap.shape))
             return -1
 
         if var.startswith('fg_'):
@@ -1117,20 +1117,20 @@ def plot_threeslice(filename=None,
     if 'x' in slices:
         if np.ndim(datamap_x)==3: # vector
             if datamap_x.shape[2]!=3:
-                logging.info("Error, expected array of 3-element vectors, found array of shape ",datamap_x.shape)
+                logging.info("Error, expected array of 3-element vectors, found array of shape " + str(datamap_x.shape))
                 return -1
             datamap_x = np.linalg.norm(datamap_x, axis=-1)
         if np.ndim(datamap_x)==4: # tensor
             if datamap_x.shape[2]!=3 or datamap_x.shape[3]!=3:
                 # This may also catch 3D simulation fsgrid variables
-                logging.info("Error, expected array of 3x3 tensors, found array of shape ",datamap_x.shape)
+                logging.info("Error, expected array of 3x3 tensors, found array of shape " + str(datamap_x.shape))
                 return -1
             datamap_x = datamap_x[:,:,0,0]+datamap_x[:,:,1,1]+datamap_x[:,:,2,2]
         if np.ndim(datamap_x)>=5: # Too many dimensions
-            logging.info("Error, too many dimensions in datamap, found array of shape ",datamap_x.shape)
+            logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap_x.shape))
             return -1
         if np.ndim(datamap_x)!=2: # Too many dimensions
-            logging.info("Error, too many dimensions in datamap, found array of shape ",datamap_x.shape)
+            logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap_x.shape))
             return -1
 
         # Scale final generated datamap if requested
@@ -1141,20 +1141,20 @@ def plot_threeslice(filename=None,
     if 'y' in slices:
         if np.ndim(datamap_y)==3: # vector
             if datamap_y.shape[2]!=3:
-                logging.info("Error, expected array of 3-element vectors, found array of shape ",datamap_y.shape)
+                logging.info("Error, expected array of 3-element vectors, found array of shape " + str(datamap_y.shape))
                 return -1
             datamap_y = np.linalg.norm(datamap_y, axis=-1)
         if np.ndim(datamap_y)==4: # tensor
             if datamap_y.shape[2]!=3 or datamap_y.shape[3]!=3:
                 # This may also catch 3D simulation fsgrid variables
-                logging.info("Error, expected array of 3x3 tensors, found array of shape ",datamap_y.shape)
+                logging.info("Error, expected array of 3x3 tensors, found array of shape " + str(datamap_y.shape))
                 return -1
             datamap_y = datamap_y[:,:,0,0]+datamap_y[:,:,1,1]+datamap_y[:,:,2,2]
         if np.ndim(datamap_y)>=5: # Too many dimensions
-            logging.info("Error, too many dimensions in datamap, found array of shape ",datamap_y.shape)
+            logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap_y.shape))
             return -1
         if np.ndim(datamap_y)!=2: # Too many dimensions
-            logging.info("Error, too many dimensions in datamap, found array of shape ",datamap_y.shape)
+            logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap_y.shape))
             return -1
 
         # Scale final generated datamap if requested
@@ -1165,20 +1165,20 @@ def plot_threeslice(filename=None,
     if 'z' in slices:
         if np.ndim(datamap_z)==3: # vector
             if datamap_z.shape[2]!=3:
-                logging.info("Error, expected array of 3-element vectors, found array of shape ",datamap_z.shape)
+                logging.info("Error, expected array of 3-element vectors, found array of shape " + str(datamap_z.shape))
                 return -1
             datamap_z = np.linalg.norm(datamap_z, axis=-1)
         if np.ndim(datamap_z)==4: # tensor
             if datamap_z.shape[2]!=3 or datamap_z.shape[3]!=3:
                 # This may also catch 3D simulation fsgrid variables
-                logging.info("Error, expected array of 3x3 tensors, found array of shape ",datamap_z.shape)
+                logging.info("Error, expected array of 3x3 tensors, found array of shape " + str(datamap_z.shape))
                 return -1
             datamap_z = datamap_z[:,:,0,0]+datamap_z[:,:,1,1]+datamap_z[:,:,2,2]
         if np.ndim(datamap_z)>=5: # Too many dimensions
-            logging.info("Error, too many dimensions in datamap, found array of shape ",datamap_z.shape)
+            logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap_z.shape))
             return -1
         if np.ndim(datamap_z)!=2: # Too many dimensions
-            logging.info("Error, too many dimensions in datamap, found array of shape ",datamap_z.shape)
+            logging.info("Error, too many dimensions in datamap, found array of shape " + str(datamap_z.shape))
             return -1
 
         # Scale final generated datamap if requested

@@ -142,7 +142,7 @@ def get_slice_index(deg): #aux function for indexing arcDeg-degree slices
         j = i
         ind = ind + 1
 
-    logging.info("Nope, degrees: ", deg, " ind: ", ind) #something's wrong
+    logging.info("Nope, degrees: " + str(deg) + " ind: " + str(ind)) #something's wrong
     exit()
 
 def to_Re(m): #meters to Re

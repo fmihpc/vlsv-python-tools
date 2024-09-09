@@ -49,12 +49,12 @@ def ulf_filter(
     nelems = len(f0.read_variable(var_to_filter, [1]))
     windowlength = 2 * window_pad + 1
     B_all = np.zeros((windowlength, ncells, nelems))
-    logging.info(B_all.shape)
+    logging.info("B_all.shape "+ str(B_all.shape))
     # timestate = 1000 # this can take from 713 to 1450 ( for example for EGI)
     average_range = (timestate - window_pad, timestate + window_pad)
     # collecting data for moving_averaging based on the window_pad/average_range
     for i, t in enumerate(range(average_range[0], average_range[1] + 1)):
-        logging.info("loading in ", (i, t), fileNames[t-run_start])
+        logging.info("loading in " + str(((i, t), fileNames[t-run_start])))
         reader = pt.vlsvfile.VlsvReader(fileNames[t-run_start])
         cids = reader.read_variable("CellID")
         sorti = np.argsort(cids)

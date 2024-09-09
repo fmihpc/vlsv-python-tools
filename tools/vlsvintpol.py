@@ -101,9 +101,9 @@ else:
 coords = np.atleast_2d(coords)
 
 if(args.re):
-    logging.info("#t X_RE Y_RE Z_RE CELLID " + " ".join(varnames))
+    print("#t X_RE Y_RE Z_RE CELLID " + " ".join(varnames))
 else:
-    logging.info("#t X Y Z CELLID " + " ".join(varnames))
+    print("#t X Y Z CELLID " + " ".join(varnames))
 
 if args.n is None:
     numproc = 1
@@ -120,4 +120,4 @@ if __name__ == '__main__':
 
 for i in sorted(return_array):
     for j in i:
-        logging.info(j[1])
+        print(j[1])

@@ -27,7 +27,7 @@ def newtonmethod(theta, V1sq, beta1, vA1sq, Gamma, vs1sq):
     cos12 = np.cos(theta)**2
     sin12 = np.sin(theta)**2
     MA2=V1sq/vA1sq
-    logging.info("MA ",np.sqrt(MA2))
+    logging.info("MA: " + str(np.sqrt(MA2)))
     Ztry = max( ((0.5/cos12)*(calctemp1 + np.sqrt(calctemp1**2 - 2.*Gamma*beta1*cos12)) -1.),
                 ((0.5/cos12)*(calctemp1 - np.sqrt(calctemp1**2 - 2.*Gamma*beta1*cos12)) -1.), 0.)
     # First (root for M**2) -1
@@ -109,7 +109,7 @@ def rankine(Tu, rhou, V, B, n, Vsh):
     X = sol.x
     # Alternative own Newton method
     X2 = newtonmethod(theta, np.dot(Vu,Vu), beta1, vAusq, Gamma, vsusq)
-    logging.info("X ",X," X2 ",X2)
+    logging.info("X " +str(X) + " X2 " + str(X2))
     
     VuHTsq = np.dot(VuHT,VuHT)
     VndHT = VnuHT / X
@@ -138,23 +138,23 @@ def rankine(Tu, rhou, V, B, n, Vsh):
     #//Td = pd / (Gamma * rhod * k)
     Td = pd / (rhod * k)
                       
-    logging.info("Gas compression ratio ",X[0])
-    logging.info("Magnetic compression ratio ",XB)
+    logging.info("Gas compression ratio " + str(X[0]))
+    logging.info("Magnetic compression ratio " + str(XB))
 
     logging.info("")
     logging.info("This determines the dHT upstream state")
-    logging.info("Density ",rhou)
-    logging.info("Temperature ",Tu)
+    logging.info("Density " + str(rhou))
+    logging.info("Temperature " + str(Tu))
     #logging.info("Thermal pressure ",pu[0])
-    logging.info(" V ",VuHT)
-    logging.info(" B ",BuHT)
+    logging.info(" V " + str(VuHT))
+    logging.info(" B " + str(BuHT))
 
     logging.info("")
     logging.info("This determines the dHT downstream state")
-    logging.info("Density ",rhod[0])
-    logging.info("Temperature ",Td[0])
+    logging.info("Density " + str(rhod[0]))
+    logging.info("Temperature " + str(Td[0]))
     #logging.info("Thermal pressure ",pd[0])
-    logging.info(" V ",VdHT)
-    logging.info(" B ",BdHT)
+    logging.info(" V " + str(VdHT))
+    logging.info(" B " + str(BdHT))
 
     return X[0], XB

@@ -286,7 +286,7 @@ def plot_ionosphere(filename=None,
     vscale, _, datamap_unit_latex = datamap_info.get_scaled_units(vscale=vscale)
     values = datamap_info.data*vscale
     if np.ndim(values) == 0:
-        logging.info("Error, reading variable '" + str(var) + "' from vlsv file!",values.shape)
+        logging.info("Error, reading variable '" + str(var) + "' from vlsv file! values.shape being" + str(values.shape))
         return -1
 
     # Add unit to colorbar title
@@ -626,7 +626,7 @@ def plot_ionosphere(filename=None,
         try:
             plt.savefig(outputfile,dpi=300, bbox_inches=bbox_inches, pad_inches=savefig_pad)
         except:
-            logging.info("Error attempting to save figure: ", sys.exc_info())
+            logging.info("Error attempting to save figure: " + str(sys.exc_info()))
         logging.info(outputfile+"\n")
         plt.close()
     elif draw is not None and axes is None:

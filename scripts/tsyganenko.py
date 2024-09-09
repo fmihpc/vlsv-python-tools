@@ -176,9 +176,9 @@ def tsyganenko_open(phi, lat, R_inner = 1, R_outer = 15, **kwargs):
     #convert phi, lat to cartesian
     theta = 90 - lat   # "co-latitude"
     x0, y0, z0 = spherical_to_cartesian(R_inner*1.01, theta * np.pi / 180, phi * np.pi / 180 )
-    logging.info(x0, y0, z0)
+    logging.info("Cartesian coords : " + str((x0, y0, z0)))
     x,y,z,xx,yy,zz = tsyganenko_trace(x0, y0, z0, R_inner = R_inner, R_outer = R_outer, **kwargs)
-    logging.info(x, y, z)
+    logging.info("Trace: " + str((x, y, z)))
     r = (x**2 + y**2 + z**2)**0.5
     if r <= R_inner*1.01:
         # otherwise, the results will be spurious
@@ -350,7 +350,7 @@ def tsyganenko_b(x, y, z, Txx = 't01', InternalB='dipole', Dst = -30, Kp = 4, Vx
                                 # Maybe redundant because dipole tilt angle specified in call to t01()
         ps = gp.recalc(t_zerotilt,vxgse=Vx_sw) # field initialisation at time with ~zero dipole tilt
        
-        logging.info('ps:', ps)
+        logging.info('ps: ' + str(ps))
 
         # convert initial position from GSE to GSM coordinate system
         # x_in = [...];   y_in = [...];   z_in = [...]

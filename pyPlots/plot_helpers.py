@@ -507,7 +507,7 @@ def expr_Diff(pass_maps, requestvariables=False):
     map0=pass_maps[0][var]
     map1=pass_maps[1][var]
     if (map0.shape != map1.shape):
-        logging.info("Error with diff: incompatible map shapes! ",map0.shape,map1.shape)
+        logging.info("Error with diff: incompatible map shapes! " + str(map0.shape) + " vs " + str(map1.shape))
         sys.exit(-1)
     if (map0.dtype in ['uint8','uint16','uint32','uint64']):
         logging.info("Diff: Converting from unsigned to signed integers")
@@ -1251,13 +1251,13 @@ def expr_electronflow(pass_maps, requestvariables=False):
     reqjele = j - jprot
     reqjv = reqjele / erhomap[:,:,np.newaxis] / (-unitcharge)
 
-    logging.info("mean jprot",np.mean(np.linalg.norm(jprot,axis=-1)),'mean jele',np.mean(np.linalg.norm(jele,axis=-1)))
-    logging.info("min jprot",np.min(np.linalg.norm(jprot,axis=-1)),'min jele',np.min(np.linalg.norm(jele,axis=-1)))
-    logging.info("max jprot",np.max(np.linalg.norm(jprot,axis=-1)),'max jele',np.max(np.linalg.norm(jele,axis=-1)))
+    logging.info("mean jprot: " + str(np.mean(np.linalg.norm(jprot,axis=-1))) + ', mean jele: ' + str(np.mean(np.linalg.norm(jele,axis=-1))))
+    logging.info("min jprot: " + str(np.min(np.linalg.norm(jprot,axis=-1))) +   ', min jele: ' + str(np.min(np.linalg.norm(jele,axis=-1))))
+    logging.info("max jprot: " + str(np.max(np.linalg.norm(jprot,axis=-1))) +   ', max jele: ' + str(np.max(np.linalg.norm(jele,axis=-1))))
 
-    logging.info("mean reqjv",np.mean(np.linalg.norm(reqjv,axis=-1)),'mean reqjele',np.mean(np.linalg.norm(reqjele,axis=-1)))
-    logging.info("min reqjv",np.min(np.linalg.norm(reqjv,axis=-1)),'min reqjele',np.min(np.linalg.norm(reqjele,axis=-1)))
-    logging.info("max reqjv",np.max(np.linalg.norm(reqjv,axis=-1)),'max reqjele',np.max(np.linalg.norm(reqjele,axis=-1)))
+    logging.info("mean reqjv: " + np.mean(np.linalg.norm(reqjv,axis=-1))+'mean reqjele: ' + str(np.mean(np.linalg.norm(reqjele,axis=-1))))
+    logging.info( "min reqjv: " + np.min(np.linalg.norm(reqjv,axis=-1)) + 'min reqjele: ' + str(np.min(np.linalg.norm(reqjele,axis=-1))))
+    logging.info( "max reqjv: " + np.max(np.linalg.norm(reqjv,axis=-1)) + 'max reqjele: ' + str(np.max(np.linalg.norm(reqjele,axis=-1))))
 
     return np.swapaxes(reqjv, 0,1)
 
@@ -1335,7 +1335,7 @@ def cavitons(ax, XmeshXY,YmeshXY, extmaps, requestvariables=False):
     cavitons.fill_value = 0.
     cavitons[cavitons.mask == False] = 1.
 
-    logging.info("cavitons",cavitons.sum())
+    logging.info("cavitons: " + str(cavitons.sum()))
 
     # mask SHFAs
     SHFAs = np.ma.masked_greater_equal(B,level_B_caviton)
@@ -1343,7 +1343,7 @@ def cavitons(ax, XmeshXY,YmeshXY, extmaps, requestvariables=False):
     SHFAs.mask[beta < level_beta_SHFA_SW] = True
     SHFAs.fill_value = 0.
     SHFAs[SHFAs.mask == False] = 1.
-    logging.info("SHFA",SHFAs.sum())
+    logging.info("SHFA: " + str(SHFAs.sum()))
     # draw contours
     contour_shock = ax.contour(XmeshXY,YmeshXY,rho,[level_bow_shock],
                                linewidths=1.2, colors=color_BS,label='Bow shock')
@@ -1389,7 +1389,7 @@ def expr_electronpressure_isothermal(pass_maps, requestvariables=False):
     upstream_x = nx-2
     upstream_y = ny//2
     T_0 = temp_p[upstream_x,upstream_y]
-    logging.info("upstream temperature ",T_0)
+    logging.info("upstream temperature " + str(T_0))
     # E = - (T_0 * kb)/(n_e * e) * nabla dot n_e
     mult = - T_0 * kb / elementalcharge
     gradrho = numgradscalar(rho_p)
@@ -1435,7 +1435,7 @@ def expr_electronpressure_polytropic(pass_maps, requestvariables=False):
     upstream_y = ny//2
     P_0 = pres_p[upstream_x,upstream_y]
     n_0 = rho_p[upstream_x,upstream_y]
-    logging.info("upstream pressure ",P_0," upstream density ",n_0)
+    logging.info("upstream pressure " + str(P_0) + " upstream density " + str(n_0))
     # find the constant using upstream values
     const = P_0 * np.power(n_0, -index)
     # Now the electron pressure is const*n^index

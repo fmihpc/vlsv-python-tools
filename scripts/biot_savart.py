@@ -196,12 +196,12 @@ def graded_mesh(x, y, z, dV, ns = np.array([8, 4, 2]), Rs = np.array([R_EARTH, R
     r = np.sqrt(x**2 + y**2 + z**2)
 
     for i in range(ns.size):
-        logging.info('i:', i)
+        logging.info('i: '+ str(i))
         if i < ns.size - 1:
             ind, = np.where((r > Rs[i]) & (r <= Rs[i+1]))
         elif i == ns.size -1:
             ind, = np.where(r > Rs[i])
-        logging.info('ind size', ind.size)
+        logging.info('ind size: '+ str(ind.size))
         x_ref, y_ref, z_ref, dV_ref = refine_mesh(x[ind], y[ind], z[ind], dV[ind], ns[i])
         x_out = np.concatenate((x_out, x_ref))
         y_out = np.concatenate((y_out, y_ref))
@@ -563,7 +563,7 @@ if __name__ == '__main__':
     pool = Pool(int(ARGS.nproc))
     start = first + (int(ARGS.task) * int(ARGS.nproc))
     stop = start + int(ARGS.nproc)
-    logging.info('start:, ', start, ', stop: ', stop)
+    logging.info('start:, ' + str(start) + ', stop: ' + str(stop))
     input_list = [(run, i) for i in range(start, stop)]
     f_out = pool.map(save_B_vlsv, input_list)
     pool.close()

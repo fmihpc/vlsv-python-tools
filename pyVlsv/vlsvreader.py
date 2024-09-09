@@ -167,7 +167,7 @@ class VlsvReader(object):
       try:
          self.__fptr = PicklableFile(open(self.file_name,"rb"))
       except FileNotFoundError as e:
-         logging.info("File not found: ", self.file_name)
+         logging.info("File not found: " + self.file_name)
          raise e
       
       self.__xml_root = ET.fromstring("<VLSV></VLSV>")
@@ -551,35 +551,35 @@ class VlsvReader(object):
          other=False
       '''
       if parameter:
-         logging.info("tag = PARAMETER")
+         print("tag = PARAMETER")
          for child in self.__xml_root:
             if child.tag == "PARAMETER" and "name" in child.attrib:
-               logging.info("   ", child.attrib["name"])
+               print("   ", child.attrib["name"])
       if variable:
-         logging.info("tag = VARIABLE")
+         print("tag = VARIABLE")
          for child in self.__xml_root:
             if child.tag == "VARIABLE" and "name" in child.attrib:
-               logging.info("   ", child.attrib["name"])
+               print("   ", child.attrib["name"])
       if mesh:
-         logging.info("tag = MESH")
+         print("tag = MESH")
          for child in self.__xml_root:
             if child.tag == "MESH" and "name" in child.attrib:
-               logging.info("   ", child.attrib["name"])
+               print("   ", child.attrib["name"])
       if datareducer:
-         logging.info("Datareducers:")
+         print("Datareducers:")
          for name in datareducers:
-            logging.info("   ",name, " based on ", datareducers[name].variables)
+            print("   ",name, " based on ", datareducers[name].variables)
       if operator:
-         logging.info("Data operators:")
+         print("Data operators:")
          for name in data_operators:
             if type(name) is str:
                if not name.isdigit():
-                  logging.info("   ",name)
+                  print("   ",name)
       if other:
-         logging.info("Other:")
+         print("Other:")
          for child in self.__xml_root:
             if child.tag != "PARAMETER" and child.tag != "VARIABLE" and child.tag != "MESH":
-               logging.info("    tag = ", child.tag, " mesh = ", child.attrib["mesh"])
+               print("    tag = ", child.tag, " mesh = ", child.attrib["mesh"])
 
    def check_parameter( self, name ):
       ''' Checks if a given parameter is in the vlsv reader
@@ -712,12 +712,12 @@ class VlsvReader(object):
             fptr.seek(variable_offset)
             info = fptr.read(array_size).decode("utf-8")
 
-            print("Version Info for ",self.file_name)
+            print("Version Info for " + self.file_name)
             print(info)
             return True
 
       #if we end up here the file does not contain any version info
-      logging.info("File ",self.file_name," contains no version information")
+      print("File ",self.file_name," contains no version information")
       return False
   
    def get_config_string(self):
@@ -1051,7 +1051,7 @@ class VlsvReader(object):
                   tmp_vars.append( self.read( i, tag, mesh, "pass", singlecellid ) )
                output[index] = reducer.operation( tmp_vars , velocity_cell_data, velocity_coordinates )
                index+=1
-               logging.info(index,"/",len(actualcellids))
+               logging.info(str(index)+"/"+str(len(actualcellids)))
             
             if reducer.useReader:
                logging.info("Combined useVspace and useReader reducers not implemented!")
@@ -1567,7 +1567,7 @@ class VlsvReader(object):
        if self.__fsGridDecomposition is None:
          self.__fsGridDecomposition = self.read(tag="MESH_DECOMPOSITION",mesh='fsgrid')
          if self.__fsGridDecomposition is not None:
-            logging.info("Found FsGrid decomposition from vlsv file: ", self.__fsGridDecomposition)
+            logging.info("Found FsGrid decomposition from vlsv file: " + str(self.__fsGridDecomposition))
          else:
             logging.info("Did not find FsGrid decomposition from vlsv file.")
        
@@ -1575,7 +1575,7 @@ class VlsvReader(object):
        if self.__fsGridDecomposition is None:
           logging.info("Calculating fsGrid decomposition from the file")
           self.__fsGridDecomposition = fsDecompositionFromGlobalIds(self)
-          logging.info("Computed FsGrid decomposition to be: ", self.__fsGridDecomposition)
+          logging.info("Computed FsGrid decomposition to be: " + str(self.__fsGridDecomposition))
        else:
           # Decomposition is a list (or fail assertions below) - use it instead
           pass

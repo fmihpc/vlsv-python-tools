@@ -61,8 +61,10 @@ if matplotlib.__version__=="0.99.1.1" and np.__version__=="1.4.1":
 if not os.getenv('PTNOLATEX'):
    matplotlib.rc('text', usetex=True)
    matplotlib.rcParams['text.latex.preamble'] = r'\boldmath'
-   matplotlib.rcParams['mathtext.fontset'] = 'stix'
-   matplotlib.rcParams['font.family'] = 'STIXGeneral'
+   # matplotlib.rcParams['mathtext.fontset'] = 'stix'
+   # matplotlib.rcParams['font.family'] = 'STIXGeneral'
+   # Matplotlib suppressed logging messages came out after enabling logging.INFO: font.family must be one of (serif, sans-serif, cursive, monospace) when text.usetex is True. serif will be used by default.
+   matplotlib.rcParams['font.family'] = 'serif'
    logging.info("Using LaTeX formatting")
    # matplotlib.rcParams['text.dvipnghack'] = 'True' # This hack might fix it on some systems
 
@@ -82,12 +84,12 @@ else:
 try:
    import calculations
 except ImportError as e:
-   logging.info("Note: Did not import calculations module: ", e)
+   logging.info("Note: Did not import calculations module: " + str(e))
 
 try:
    import vlsvfile
 except ImportError as e:
-   logging.info("Note: Did not import vlsvfile module: ", e)
+   logging.info("Note: Did not import vlsvfile module: " + str(e))
 
 import os
 import matplotlib.pyplot as plt
@@ -111,15 +113,15 @@ else:
       try:
          import grid
       except ImportError as e:
-         logging.info("Note: Did not import (outdated MayaVi2) grid module: ", e)
+         logging.info("Note: Did not import (outdated MayaVi2) grid module: " + str(e))
 
 try:
    import plot
 except ImportError as e:
-   logging.info("Note: Did not import plot module: ", e)
+   logging.info("Note: Did not import plot module: " + str(e))
 
 try:
    import miscellaneous
 except ImportError as e:
-   logging.info("Note: Did not import miscellaneous: ", e)
+   logging.info("Note: Did not import miscellaneous: " + str(e))
 
