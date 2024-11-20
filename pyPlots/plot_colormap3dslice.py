@@ -34,6 +34,7 @@ from matplotlib.colors import BoundaryNorm,LogNorm,SymLogNorm
 from matplotlib.ticker import MaxNLocator, MultipleLocator
 from matplotlib.ticker import LogLocator
 from matplotlib.patches import Circle, Wedge
+from matplotlib.collections import LineCollection
 import matplotlib.ticker as mtick
 import colormaps as cmaps
 from matplotlib.cbook import get_sample_data
@@ -64,7 +65,9 @@ def plot_colormap3dslice(filename=None,
                   absolute=False,
                   symmetric=False,
                   pass_vars=None, pass_times=None, pass_full=False,
-                  fsaved=None,
+                  fsaved=None, fsavedlinewidth=0.5, fsavedcolour="black", fsavedlinestyle="solid",
+                  fluxrope=0, fluxropelinewidth=0.5, fluxropecolour=None, fluxropelinestyle=None,
+                  amr=None, amrlinewidths=None, amrcolours=None, amrlinestyles=None,
                   nomask=None,
                   Earth=None,
                   highres=None,
@@ -174,6 +177,21 @@ def plot_colormap3dslice(filename=None,
                         and expression keywords, as well as related pass_vars, pass_times, and pass_full.
 
     :kword fsaved:      Overplot locations of fSaved. If keyword is set to a string, that will be the colour used.
+    :kword fsavedlinewidth: Line width for fSaved markers, default 0.5.
+    :kword fsavedlinestyle: Line style of fSaved markers, default "solid".
+    :kword fluxrope:    Overplot a contour of where vg_fluxrope is under the cutoff value given in this variable.
+                        The contour follows the AMR cell edges.
+    :kword fluxropelinewidth: Line width of fluxrope contour, default 0.5.
+    :kword fluxropecolour: Colour of fluxrope contour, default "black".
+    :kword fluxropelinestyle: Line style of fluxrope contour, default "solid".
+    :kword amr:         Overplot contours of AMR levels given as a tuple in this argument. The contours follow the AMR cell edges.
+    :kword amrlinewidths: Line widths of AMR contours, default 0.5. If a single value it is applied to all contours,
+                          otherwise given as a tuple of same length as kword amr.
+    :kword amrcolours:  Colours of AMR contour, default "black". If a single value is given, it is applied to all contours,
+                        otherwise given as a tuple of same length as kword amr.
+    :kword amrlinestyles: Line styles of AMR contours, default "solid". If a single value is given, it is applied to all contours,  
+                          otherwise given as a tuple of same length as kword amr.
+
     :kword nomask:      Do not mask plotting based on proton density
 
     :kword vectors:     Set to a vector variable to overplot (unit length vectors, color displays variable magnitude)
@@ -1205,9 +1223,110 @@ def plot_colormap3dslice(filename=None,
                 fSmap = fSmap[MaskX[0]:MaskX[-1]+1,:]
                 fSmap = fSmap[:,MaskY[0]:MaskY[-1]+1]
             if XYmask.any():
-                fSmap = np.ma.array(fSmap, mask=XYmask)            
-            fScont = ax1.contour(XmeshCentres,YmeshCentres,fSmap,[0.5],colors=fScolour, 
-                                 linestyles='solid',linewidths=0.5,zorder=2)
+                fSmap = np.ma.array(fSmap, mask=XYmask)
+
+            v = np.diff(fSmap > 0.1, axis=1)
+            h = np.diff(fSmap > 0.1, axis=0)
+
+            # From https://stackoverflow.com/questions/63458863/way-to-contour-outer-edge-of-selected-grid-region-in-python
+            # Check that at least one spot exceeds threshold or the below will crash.
+            if np.max(fSmap) > 0.1:
+                x=np.array(XmeshPass[0])
+                y=np.array([li[0] for li in YmeshPass])
+
+                l = np.argwhere(v.T)
+                vlines = np.array(list(zip(np.stack((x[l[:, 0] + 1], y[l[:, 1]])).T,
+                                           np.stack((x[l[:, 0] + 1], y[l[:, 1] + 1])).T)))
+                l = np.argwhere(h.T)
+                hlines = np.array(list(zip(np.stack((x[l[:, 0]], y[l[:, 1] + 1])).T,
+                                           np.stack((x[l[:, 0] + 1], y[l[:, 1] + 1])).T)))
+                lines = np.vstack((vlines, hlines))
+                ax1.add_collection(LineCollection(lines, lw=fsavedlinewidth, colors=fScolour, linestyle=fsavedlinestyle))
+
+    # add fluxrope contour
+    if fluxrope > 0:
+        if f.check_variable("vg_fluxrope"):
+            fRmap = f.read_variable("vg_fluxrope")
+            fRmap = fRmap[indexids] # sort
+            fRmap = fRmap[indexlist] # find required cells
+            fRmap = ids3d.idmesh3d(idlist, fRmap, reflevel, xsize, ysize, zsize, xyz, None)
+            if np.ma.is_masked(maskgrid):
+                fRmap = fRmap[MaskX[0]:MaskX[-1]+1,:]
+                fRmap = fRmap[:,MaskY[0]:MaskY[-1]+1]
+            if XYmask.any():
+                fRmap = np.ma.array(fRmap, mask=XYmask)
+
+                # vg_fluxrope goes to the max defined at runtime, set the values above our cutoff to zero for clean results.
+                fRmap = np.where(fRmap > fluxrope, np.zeros_like(fRmap), fRmap)
+
+            v = np.diff(fRmap > 0.1, axis=1)
+            h = np.diff(fRmap > 0.1, axis=0)
+
+            # From https://stackoverflow.com/questions/63458863/way-to-contour-outer-edge-of-selected-grid-region-in-python
+            # Check that at least one spot exceeds threshold or the below will crash.
+            if np.max(fRmap) > 0.1:
+                x=np.array(XmeshPass[0])
+                y=np.array([li[0] for li in YmeshPass])
+
+                l = np.argwhere(v.T)
+                vlines = np.array(list(zip(np.stack((x[l[:, 0] + 1], y[l[:, 1]])).T,
+                                           np.stack((x[l[:, 0] + 1], y[l[:, 1] + 1])).T)))
+                l = np.argwhere(h.T)
+                hlines = np.array(list(zip(np.stack((x[l[:, 0]], y[l[:, 1] + 1])).T,
+                                           np.stack((x[l[:, 0] + 1], y[l[:, 1] + 1])).T)))
+                lines = np.vstack((vlines, hlines))
+                ax1.add_collection(LineCollection(lines, lw=fluxropelinewidth, colors=fluxropecolour, linestyle=fluxropelinestyle))
+
+    # add AMR contours
+    if amr is not None:
+        if np.isscalar(amr):
+            amr = [amr]
+        amrcolourstuple = []
+        amrlinewidthstuple = []
+        amrlinestylestuple = []
+        for i in range(len(amr)):
+            if type(amrcolours) is str:
+                amrcolourstuple.append(amrcolours)
+            else:
+                amrcolourstuple.append(amrcolours[i])
+            if np.isscalar(amrlinewidths):
+                amrlinewidthstuple.append(amrlinewidths)
+            else:
+                amrlinewidthstuple.append(amrlinewidths[i])
+            if type(amrlinestyles) is str:
+                amrlinestylestuple.append(amrlinestyles)
+            else:
+                amrlinestylestuple.append(amrlinestyles[i])
+
+
+        AMRmap = f.read_variable("vg_reflevel")
+        AMRmap = AMRmap[indexids] # sort
+        AMRmap = AMRmap[indexlist] # find required cells
+        AMRmap = ids3d.idmesh3d(idlist, AMRmap, reflevel, xsize, ysize, zsize, xyz, None)
+        if np.ma.is_masked(maskgrid):
+            AMRmap = AMRmap[MaskX[0]:MaskX[-1]+1,:]
+            AMRmap = AMRmap[:,MaskY[0]:MaskY[-1]+1]
+        if XYmask.any():
+            AMRmap = np.ma.array(AMRmap, mask=XYmask)
+
+        for i,val in enumerate(amr):
+            v = np.diff(AMRmap > val-0.1, axis=1)
+            h = np.diff(AMRmap > val-0.1, axis=0)
+
+            # From https://stackoverflow.com/questions/63458863/way-to-contour-outer-edge-of-selected-grid-region-in-python
+            # Check that at least one spot exceeds threshold or the below will crash.
+            if np.max(AMRmap) > val-0.1:
+                x=np.array(XmeshPass[0])
+                y=np.array([li[0] for li in YmeshPass])
+
+                l = np.argwhere(v.T)
+                vlines = np.array(list(zip(np.stack((x[l[:, 0] + 1], y[l[:, 1]])).T,
+                                           np.stack((x[l[:, 0] + 1], y[l[:, 1] + 1])).T)))
+                l = np.argwhere(h.T)
+                hlines = np.array(list(zip(np.stack((x[l[:, 0]], y[l[:, 1] + 1])).T,
+                                           np.stack((x[l[:, 0] + 1], y[l[:, 1] + 1])).T)))
+                lines = np.vstack((vlines, hlines))
+                ax1.add_collection(LineCollection(lines, lw=amrlinewidths[i], colors=amrcolours[i], linestyle=amrlinestyles[i]))
 
 
     if Earth:
