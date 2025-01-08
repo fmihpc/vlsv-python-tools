@@ -20,7 +20,7 @@
 
 '''
 
-import pytools as pt
+import analysator as pt
 import os
 import matplotlib
 import matplotlib.pyplot as plt

@@ -1,4 +1,4 @@
-import pytools as pt
+import analysator as pt
 import sys, os, socket
 import numpy as np
 import matplotlib as mpl

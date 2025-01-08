@@ -33,7 +33,7 @@ as used in Alho+2024 https://doi.org/10.5194/angeo-42-145-2024 (Figures
 
 """
 
-import pytools as pt
+import analysator as pt
 import numpy as np
 import sys
 import matplotlib.pyplot as plt

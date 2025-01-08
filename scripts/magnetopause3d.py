@@ -4,7 +4,7 @@ Finds the magnetopause position by tracing steamines of the plasma flow for thre
 from pyCalculations import ids3d
 import matplotlib.pyplot as plt
 import numpy as np
-import pytools as pt
+import analysator as pt
 import plot_colormap3dslice
 import yt
 import math

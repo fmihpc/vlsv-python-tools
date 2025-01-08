@@ -41,7 +41,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
-import pytools as pt
+import analysator as pt
 import numpy as np
 import operator as oper
 from matplotlib.patches import Wedge

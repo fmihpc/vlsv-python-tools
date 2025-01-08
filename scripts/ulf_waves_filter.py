@@ -1,6 +1,6 @@
 import os  # nopep8
 os.environ['PTNOLATEX'] = '1'  # nopep8
-import pytools as pt  # nopep8
+import analysator as pt  # nopep8
 import glob
 from scipy.signal import butter, filtfilt
 import numpy as np

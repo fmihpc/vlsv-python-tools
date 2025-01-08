@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "analysator"
+version = "0.9.6"
+authors = [
+    { name = "Markku Alho", email = "markku.alho@helsinki.fi"},
+    { name = "Et al"},
+]
+maintainters = [
+    { name = "Markku Alho", email = "markku.alho@helsinki.fi"},
+]
+description = "Tools for reading and analysing Vlasiator .vlsv output files."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+]
+[project.optional-dependencies]
+isosurface = [
+    "scikit-image",
+]
+
+[project.urls]
+Homepage = "https://github.com/fmihpc/analysator"
+Issues = "https://github.com/fmihpc/analysator/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["./analysator","./pytools"]
+
+[tool.hatch.build.targets.sdist]
+packages = ["./analysator","./pytools"]

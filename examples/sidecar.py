@@ -42,7 +42,7 @@ passed to a job submission system for generating a multitude of sidecars
 via e.g. array jobs.
 '''
 
-import pytools as pt
+import analysator as pt
 import numpy as np
 import sys
 import time

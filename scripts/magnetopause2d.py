@@ -3,7 +3,7 @@ Finds the magnetopause position by tracing steamines of the plasma flow for two-
 '''
 
 import numpy as np
-import pytools as pt
+import analysator as pt
 import plot_colormap
 import yt
 from yt.visualization.api import Streamlines

@@ -1,5 +1,5 @@
 import numpy as np
-import pytools as pt
+import analysator as pt
 import matplotlib
 import matplotlib.pyplot as plt
 import sys,os

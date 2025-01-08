@@ -31,7 +31,7 @@
 # passed to a job submission system for generating a multitude of frames
 # via e.g. array jobs.
 
-import pytools as pt
+import analysator as pt
 import sys, os, socket
 import numpy as np
 
