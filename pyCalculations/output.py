@@ -45,8 +45,7 @@ def output_1d( arrays, names, units="" ):
    if units == "":
       units = ["" for i in range(len(arrays))]
    if( (len(arrays) != len(names)) or (len(arrays) != len(units)) ):
-      logging.info("BAD ARRAY AND NAME LENGTH IN OUTPUT_1D (pyCalculations/output.py)")
-      return []
+      raise ValueError("Bad array and name length in output_1d (pyCalculations/output.py)")
    new_format = []
    from variable import VariableInfo
    for i in range(len(arrays)):

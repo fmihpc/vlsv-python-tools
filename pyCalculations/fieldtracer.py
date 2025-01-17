@@ -119,8 +119,7 @@ def static_field_tracer( vlsvReader, x0, max_iterations, dx, direction='+', bvar
       z = np.arange(mins[2], maxs[2], dcell[2]) + 0.5*dcell[2]
       coordinates = np.array([x,y,z])
       # Debug:
-      if( len(x) != sizes[0] ):
-         logging.info("SIZE WRONG: " + str(len(x)) + " " + str(sizes[0]))
+      assert len(x) == sizes[0]
 
       # Create grid interpolation
       interpolator_face_B_0 = interpolate.RectBivariateSpline(coordinates[indices[0]] - 0.5*dcell[indices[0]], coordinates[indices[1]], face_B[indices[0]], kx=2, ky=2, s=0)
@@ -144,19 +143,16 @@ def static_field_tracer( vlsvReader, x0, max_iterations, dx, direction='+', bvar
       z = np.arange(mins[2], maxs[2], dcell[2]) + 0.5*dcell[2]
       coordinates = np.array([x,y,z])
       # Debug:
-      if( len(x) != sizes[0] ):
-         logging.info("SIZE WRONG: " + str(len(x)) + " " + str(sizes[0]))
+      assert len(x) == sizes[0]
 
       # Create grid interpolation
       interpolator_vol_B_0 = interpolate.RectBivariateSpline(coordinates[indices[0]], coordinates[indices[1]], vol_B[indices[0]], kx=2, ky=2, s=0)
       interpolator_vol_B_1 = interpolate.RectBivariateSpline(coordinates[indices[0]], coordinates[indices[1]], vol_B[indices[1]], kx=2, ky=2, s=0)
       interpolators = [interpolator_vol_B_0, interpolator_vol_B_1]#, interpolator_face_B_2]
    elif centering == 'node':
-      logging.info("Nodal variables not implemented")
-      return
+      raise ValueError("Nodal variables not implemented")
    else:
-      logging.info("Unrecognized centering: "+ str(centering))
-      return
+      raise ValueError("Unrecognized centering: " + str(centering))
 
    #######################################################
    if direction == '-':
@@ -216,10 +212,6 @@ def fg_trace(vlsvReader, fg, seed_coords, max_iterations, dx, multiplier, stop_c
    x = np.arange(mins[0], maxs[0], dcell[0]) + 0.5*dcell[0]
    y = np.arange(mins[1], maxs[1], dcell[1]) + 0.5*dcell[1]
    z = np.arange(mins[2], maxs[2], dcell[2]) + 0.5*dcell[2]
-
-   if centering is None:
-      logging.info("centering keyword not set! Aborting.")
-      return False
   
    # Create grid interpolation object for vector field (V). Feed the object the component data and locations of measurements.
    if centering == 'face':
@@ -230,6 +222,8 @@ def fg_trace(vlsvReader, fg, seed_coords, max_iterations, dx, multiplier, stop_c
       interpolator_V_0 = interpolate.RegularGridInterpolator((x, y-0.5*dcell[1], z-0.5*dcell[2]), fg[:,:,:,0], bounds_error = False, fill_value = np.nan)
       interpolator_V_1 = interpolate.RegularGridInterpolator((x-0.5*dcell[0], y, z-0.5*dcell[2]), fg[:,:,:,1], bounds_error = False, fill_value = np.nan)
       interpolator_V_2 = interpolate.RegularGridInterpolator((x-0.5*dcell[0], y-0.5*dcell[1], z), fg[:,:,:,2], bounds_error = False, fill_value = np.nan)
+   else:
+      raise NotImplementedError("Unknown centering kword ("+str(centering)+").")
 
    interpolators = [interpolator_V_0, interpolator_V_1, interpolator_V_2]
 

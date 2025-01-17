@@ -26,7 +26,7 @@ def epsilon_M(f,cell,pop="proton",m=m_p, bulk=None, B=None,
     :kword threshold:   Disregard vspace cells under this threshold [0]
     :kword dummy:       If not None, generate dummy data for e.g. integration.
 
-    :returns:           scalar, non-Maxwellianity parameter for given model and norm
+    :returns:           scalar, non-Maxwellianity parameter for given model and norm; -1 for missing VDF/other bad data
 
     The definition is given by Graham et al. (2021):
     (1/2n) * integral(\\|f_i - g_M\\|) d^3v    
@@ -92,8 +92,10 @@ def epsilon_M(f,cell,pop="proton",m=m_p, bulk=None, B=None,
             except:
                 logging.info("Could not load vg_b_vol from bulk file "+bulk)
         if B is None:
-            warnings.warn("No B found, cannot proceed at cellid "+str(cell))
-            return -1
+            if model == "maxwellian":
+                B = np.array([0,0,1]) # Use a dummy B for the simple maxwellian, here we can proceed
+            else:
+                raise ValueError("No B found and "+str(model)+" requires B, cannot proceed at cellid "+str(cell)+". Either use 'maxwellian' or find B from somewhere.")
 
     if bulk is not None:
         try:
@@ -156,7 +158,7 @@ def epsilon_M(f,cell,pop="proton",m=m_p, bulk=None, B=None,
         -((vb[:,1] - v0_perp)**2 + vb[:,2]**2)/(vT_para**2 * (T_perp/T_para))
         )
     else:
-        raise NameError("Unknown VDF model '"+model+"', aborting")
+        raise ValueError("Unknown VDF model '"+model+"', aborting")
 
     epsilon = np.linalg.norm(distribution - model_f, ord=normorder)
     epsilon *= dV / (norm * n)

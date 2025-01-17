@@ -23,6 +23,7 @@
 import numpy as np
 import pytools
 import logging
+import warnings
 # Function to reduce the velocity space in a spatial cell to an omnidirectional energy spectrum
 # Weighted by particle flux/none
 def get_spectrum_energy(vlsvReader,
@@ -50,7 +51,7 @@ def get_spectrum_energy(vlsvReader,
          if not vlsvReader.read_variable('vg_f_saved',cid):
             return (False,np.zeros(nBins), EkinBinEdges)
       else:
-         logging.info("Error finding cells with VDFs!")
+         warnings.warn("Trouble finding cells with VDFs - pending new handling of these checks, the function may work or crash.")
 
    if vlsvReader.check_variable('MinValue'):
       fMin = vlsvReader.read_variable('MinValue',cid)
@@ -177,7 +178,7 @@ def get_spectrum_alongaxis_vel(vlsvReader,
          if not vlsvReader.read_variable('vg_f_saved',cid):
             return (False,np.zeros(nBins), VBinEdges)
       else:
-         logging.info("Error finding cells with VDFs!")
+         warnings.warn("Trouble finding cells with VDFs - pending new handling of these checks, the function may work or crash.")
 
    if vlsvReader.check_variable('MinValue'):
       fMin = vlsvReader.read_variable('MinValue',cid)

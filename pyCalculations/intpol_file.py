@@ -44,8 +44,7 @@ def vlsv_intpol_file(file_vlsv,file_orbit,varlist,file_output):
    if points.shape[1] == 4:
       points = np.delete(points,0,1) # remove time column
    if points.shape[1] != 3:
-      logging.info("ERROR: orbit file must have 3 (x,y,z) or 4 (t,x,y,z) columns")
-      return
+      raise ValueError("Orbit file must have 3 (x,y,z) or 4 (t,x,y,z) columns")
    [crd,cellids,params,hstr]=pt.calculations.vlsv_intpol_points(f,points,varlist)
    d=np.concatenate((crd,cellids,params),axis=1)
    np.savetxt(file_output,d,"% 05e",header=hstr,comments="% ")
