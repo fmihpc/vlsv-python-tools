@@ -56,6 +56,8 @@ if matplotlib.__version__=="0.99.1.1" and np.__version__=="1.4.1":
    logging.info('either using csc.taito.fi without loading the mayavi2 module, or by invoking')
    logging.info('the system python interpeter by calling "./scriptname.py" instead of "python ./scriptname.py"')
 
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
+
 # Run TeX typesetting through the full TeX engine instead of python's own mathtext. Allows
 # for changing fonts, bold math symbols etc, but may cause trouble on some systems.
 if not os.getenv('PTNOLATEX'):
