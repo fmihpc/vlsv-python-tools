@@ -76,6 +76,10 @@ def sumv( variable ):
       # Third dimension: components
       return np.sum(np.array(variable),axis=0)
 
+# This just returns the upstream variable for passing forwards under a new datareducer name
+def Alias( variable ):
+   return variable[0]
+
 def condition_matrix_array( condition, matrices ):
    # This routine is still very slow due to for-loops
    ''' Repeats condition n times and forms an array of it
@@ -1216,9 +1220,30 @@ v5reducers["vg_dx"] =            DataReducerVariable(["CellID"], vg_dx, "m", 3, 
 v5reducers["vg_dxs"] =            DataReducerVariable(["CellID"], vg_dx, "m", 3, latex=r"$\Delta{}\vec{r}$", latexunits=r"$\mathrm{m}$", useReader=True)
 v5reducers["vg_reflevel"] =            DataReducerVariable(["CellID"], vg_reflevel, "", 1, latex=r"reflevel", latexunits=r"", useReader=True)
 
-v5reducers["vg_jacobian_b"] =             DataReducerVariable(["vg_dbxvoldx","vg_dbxvoldy","vg_dbxvoldz","vg_dbyvoldx","vg_dbyvoldy","vg_dbyvoldz","vg_dbzvoldx","vg_dbzvoldy","vg_dbzvoldz"], TensorFromScalars, "T/m", 9, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
-v5reducers["vg_jacobian_bper"] =          DataReducerVariable(["vg_dperbxvoldx","vg_dperbxvoldy","vg_dperbxvoldz","vg_dperbyvoldx","vg_dperbyvoldy","vg_dperbyvoldz","vg_dperbzvoldx","vg_dperbzvoldy","vg_dperbzvoldz"], TensorFromScalars, "T/m", 9, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_jacobian_b"] =             DataReducerVariable(["vg_derivatives/vg_dbxvoldx","vg_derivatives/vg_dbxvoldy","vg_derivatives/vg_dbxvoldz","vg_derivatives/vg_dbyvoldx","vg_derivatives/vg_dbyvoldy","vg_derivatives/vg_dbyvoldz","vg_derivatives/vg_dbzvoldx","vg_derivatives/vg_dbzvoldy","vg_derivatives/vg_dbzvoldz"], TensorFromScalars, "T/m", 9, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_jacobian_bper"] =          DataReducerVariable(["vg_derivatives/vg_dperbxvoldx","vg_derivatives/vg_dperbxvoldy","vg_derivatives/vg_dperbxvoldz","vg_derivatives/vg_dperbyvoldx","vg_derivatives/vg_dperbyvoldy","vg_derivatives/vg_dperbyvoldz","vg_derivatives/vg_dperbzvoldx","vg_derivatives/vg_dperbzvoldy","vg_derivatives/vg_dperbzvoldz"], TensorFromScalars, "T/m", 9, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
 v5reducers["vg_j"] =                     DataReducerVariable(["vg_jacobian_bper"], J, "A/m^2", 3, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+
+# Not the most elegant alias setup - could refine to fetch upstream metadata
+v5reducers["vg_derivatives/vg_dbxvoldx"] = DataReducerVariable(["vg_dbxvoldx"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbyvoldx"] = DataReducerVariable(["vg_dbyvoldx"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbzvoldx"] = DataReducerVariable(["vg_dbzvoldx"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbxvoldy"] = DataReducerVariable(["vg_dbxvoldy"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbyvoldy"] = DataReducerVariable(["vg_dbyvoldy"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbzvoldy"] = DataReducerVariable(["vg_dbzvoldy"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbxvoldz"] = DataReducerVariable(["vg_dbxvoldz"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbyvoldz"] = DataReducerVariable(["vg_dbyvoldz"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dbzvoldz"] = DataReducerVariable(["vg_dbzvoldz"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+
+v5reducers["vg_derivatives/vg_dperbxvoldx"] = DataReducerVariable(["vg_dperbxvoldx"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbyvoldx"] = DataReducerVariable(["vg_dperbyvoldx"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbzvoldx"] = DataReducerVariable(["vg_dperbzvoldx"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbxvoldy"] = DataReducerVariable(["vg_dperbxvoldy"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbyvoldy"] = DataReducerVariable(["vg_dperbyvoldy"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbzvoldy"] = DataReducerVariable(["vg_dperbzvoldy"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbxvoldz"] = DataReducerVariable(["vg_dperbxvoldz"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbyvoldz"] = DataReducerVariable(["vg_dperbyvoldz"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+v5reducers["vg_derivatives/vg_dperbzvoldz"] = DataReducerVariable(["vg_dperbzvoldz"], Alias, "T/m", 1, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
 
 #multipopv5reducers
 multipopv5reducers = {}
