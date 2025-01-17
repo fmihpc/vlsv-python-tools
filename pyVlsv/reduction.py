@@ -701,6 +701,19 @@ def gyrophase_relstddev( variables, velocity_cell_data, velocity_coordinates ):
    histo = plt.hist(gyrophase_data[0].data, weights=gyrophase_data[1].data, bins=36, range=[-180.0,180.0], log=False, normed=1)
    return np.std(histo[0])/np.mean(histo[0])
 
+def vspace_dummy( variables, velocity_cell_data, velocity_coordinates ):
+   # This reducer needs to be verified
+   #B = variables[0]
+   #print('B: ', B.shape)
+   velocity_cellids = np.array(list(velocity_cell_data.keys()))
+   psd = np.array(list(velocity_cell_data.values()))
+   print(velocity_cellids.shape)
+   print(psd.shape)
+   print(velocity_coordinates.shape)
+   #print('vcelldata: ', list(velocity_cell_data.keys())[0], list(velocity_cell_data.values())[0])
+   #print('vcoord: ', velocity_coordinates.shape)
+   return np.sum(velocity_coordinates)
+
 def Dng( variables ):
    # This reducer needs to be verified
    # This routine is still very slow due to for-loops
@@ -1219,6 +1232,9 @@ v5reducers["vg_reflevel"] =            DataReducerVariable(["CellID"], vg_reflev
 v5reducers["vg_jacobian_b"] =             DataReducerVariable(["vg_dbxvoldx","vg_dbxvoldy","vg_dbxvoldz","vg_dbyvoldx","vg_dbyvoldy","vg_dbyvoldz","vg_dbzvoldx","vg_dbzvoldy","vg_dbzvoldz"], TensorFromScalars, "T/m", 9, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
 v5reducers["vg_jacobian_bper"] =          DataReducerVariable(["vg_dperbxvoldx","vg_dperbxvoldy","vg_dperbxvoldz","vg_dperbyvoldx","vg_dperbyvoldy","vg_dperbyvoldz","vg_dperbzvoldx","vg_dperbzvoldy","vg_dperbzvoldz"], TensorFromScalars, "T/m", 9, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
 v5reducers["vg_j"] =                     DataReducerVariable(["vg_jacobian_bper"], J, "A/m^2", 3, latex=r"$\vec{J}$",latexunits=r"$\mathrm{A}\,\mathrm{m}^{-2}$")
+
+#reducers with useVspace
+v5reducers["vg_vspace_dummy"] =    DataReducerVariable([], vspace_dummy, "", 1, useVspace=True)
 
 #multipopv5reducers
 multipopv5reducers = {}
