@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scripts &mdash; analysator  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="biot_savart" href="../biot_savart/" />
+    <link rel="prev" title="miscellaneous" href="../miscellaneous/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            analysator
+              <img src="../_static/logo_color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plot/">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculations/">calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vlsvfile/">vlsvfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/">miscellaneous</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#biot-savart">biot_savart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gics">gics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#magnetopause2d">magnetopause2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#magnetopause3d">magnetopause3d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shue">shue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tsyganenko">tsyganenko</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../biot_savart/">biot_savart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gics/">gics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause2d/">magnetopause2d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause3d/">magnetopause3d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../shue/">shue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tsyganenko/">tsyganenko</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about/">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">analysator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">scripts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scripts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scripts">
+<h1>scripts<a class="headerlink" href="#scripts" title="Link to this heading"></a></h1>
+<p>Scripts are not included in the main Analysator module import; instead, these are separate scripts utilising Analysator to some purpose.</p>
+<section id="biot-savart">
+<h2>biot_savart<a class="headerlink" href="#biot-savart" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../biot_savart/"><span class="doc">biot_savart</span></a></p>
+<blockquote>
+<div><p>Follow Welling et al. (2020) calculate the magnetic field at Earth’s surface.</p>
+</div></blockquote>
+<p>Integrate Biot-Savart over:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>All currents within the Vlasov domain</p></li>
+<li><p>Birkeland currents (FACs) in the “gap region” between the MHD inner boundary and the ionosphere, mapped (assuming J propto B) along the field lines connecting ionosphere radius R_IONO to coupling radius r_C</p></li>
+<li><p>Horizontal Ionospheric currents (altitude 100 km)</p></li>
+</ol>
+</div></blockquote>
+<p>The integration is a discrete summation over the 3 domains.</p>
+<p>Integrating the domain #2 will likely require this mesh to be ‘refined’ in order to resolve the FAC structures
+see the functions refine_mesh() and graded_mesh()</p>
+<p>This script has been tested with the Vlasiator runs EGL, FHA, FIA
+note that the usefulness for EGL is limited because there is no ionosphere (domain #3) for that run</p>
+<p>To run this script, require access to the data reducer/variable ‘vg_J’ in the .vlsv  file
+This may be supplied by a .vlsv file’s vlsvReader object, see keyword f_J_sidecar</p>
+<p>This script is written for the UH environment. Adapt file paths as needed.</p>
+<p>###</p>
+<p>EXAMPLE CALL (1 thread):
+python biot_savart.py -nproc 1 -task 1 -run FHA</p>
+<dl class="simple">
+<dt>Example sidecar .vlsv files,  containing ground magnetic field data, can be found at:</dt><dd><p>/wrk-vakka/group/spacephysics/vlasiator/3D/{run name}/sidecars/ig_B/</p>
+</dd>
+</dl>
+</section>
+<hr class="docutils" />
+<section id="gics">
+<h2>gics<a class="headerlink" href="#gics" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../gics/"><span class="doc">gics</span></a></p>
+<p>Given a batch of .vlsv files, containing ground magnetic field vector data at different times,
+calculate the north &amp; east components of induced ground electric field [V/m], and save in corresponding .vlsv files</p>
+<p>This script has been tested with the Vlasiator runs EGL, FHA, FIA
+note that the usefulness for EGL is limited because there is no ionosphere (domain #3) for that run</p>
+<p>Note that the Geomagnetically Induced Currents (GICs) can be computed immediately from the geoelectric field:
+The surface current density is J = sigma*E, where E, sigma are respectively the ground electric field and conductivity.</p>
+<p>This script is written for the UH environment. Adapt file paths as needed.</p>
+<p>###</p>
+<dl class="simple">
+<dt>EXAMPLE CALL:</dt><dd><p>python gics.py</p>
+</dd>
+<dt>Example sidecar .vlsv files,  containing ground magnetic field data (over the ionosphere mesh), can be found at:</dt><dd><p>/wrk-vakka/group/spacephysics/vlasiator/3D/FHA/bulk1_sidecars/geoelectric_field/</p>
+</dd>
+</dl>
+</section>
+<hr class="docutils" />
+<section id="magnetopause2d">
+<h2>magnetopause2d<a class="headerlink" href="#magnetopause2d" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../magnetopause2d/"><span class="doc">magnetopause2d</span></a></p>
+<p>Finds the magnetopause position by tracing steamines of the plasma flow for two-dimensional Vlasiator runs. Needs the yt package.</p>
+</section>
+<hr class="docutils" />
+<section id="magnetopause3d">
+<h2>magnetopause3d<a class="headerlink" href="#magnetopause3d" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../magnetopause3d/"><span class="doc">magnetopause3d</span></a></p>
+<p>Finds the magnetopause position by tracing steamines of the plasma flow for three-dimensional Vlasiator runs. Needs the yt package.</p>
+</section>
+<hr class="docutils" />
+<section id="shue">
+<h2>shue<a class="headerlink" href="#shue" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../shue/"><span class="doc">shue</span></a></p>
+<blockquote>
+<div><p>See Shue et al. (1997): “A new functional form to study the solar wind control of the magnetopause size and shape”</p>
+<p>They describe a model where the radial magnetopause position r is treated as a function of angle wrt x-GSE axis</p>
+<blockquote>
+<div><p>r(theta) = r_0 * (2 / (1+ cos(theta)))^alpha</p>
+</div></blockquote>
+<p>r_0 is the subsolar standoff distance [in earth radii], alpha is a dimensionless parameter</p>
+<dl class="simple">
+<dt>The parameters r_0, alpha depend on the solar wind parameters:</dt><dd><p>B_z: z-component (GSE) of the magnetic field [nT]
+n_p: number density [cm^-3]
+v_sw: solar wind speed [km/sec]</p>
+</dd>
+</dl>
+<p>Different Vlasiator runs had</p>
+</div></blockquote>
+<p>Example usage (plot magnetopause for run ‘EGI’):</p>
+<blockquote>
+<div><p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>theta = np.linspace(0,np.pi / 2, 1000)
+r, r0, alpha = f_shue(theta, run=’EGI’)
+x = r*np.cos(theta)
+y = r*np.sin(theta)
+plt.plot(x,y)</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="tsyganenko">
+<h2>tsyganenko<a class="headerlink" href="#tsyganenko" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../tsyganenko/"><span class="doc">tsyganenko</span></a></p>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Scripts:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biot_savart/">biot_savart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.B_ionosphere"><code class="docutils literal notranslate"><span class="pre">B_ionosphere()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.B_magnetosphere"><code class="docutils literal notranslate"><span class="pre">B_magnetosphere()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.b_dip"><code class="docutils literal notranslate"><span class="pre">b_dip()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.b_dip_direction"><code class="docutils literal notranslate"><span class="pre">b_dip_direction()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.b_dip_magnitude"><code class="docutils literal notranslate"><span class="pre">b_dip_magnitude()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.biot_savart"><code class="docutils literal notranslate"><span class="pre">biot_savart()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.cartesian_to_spherical"><code class="docutils literal notranslate"><span class="pre">cartesian_to_spherical()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.fac_map"><code class="docutils literal notranslate"><span class="pre">fac_map()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.graded_mesh"><code class="docutils literal notranslate"><span class="pre">graded_mesh()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.integrate_biot_savart"><code class="docutils literal notranslate"><span class="pre">integrate_biot_savart()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.mkdir_path"><code class="docutils literal notranslate"><span class="pre">mkdir_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.nearest_node_index"><code class="docutils literal notranslate"><span class="pre">nearest_node_index()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.refine_mesh"><code class="docutils literal notranslate"><span class="pre">refine_mesh()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.save_B_vlsv"><code class="docutils literal notranslate"><span class="pre">save_B_vlsv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">spherical_to_cartesian()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.vec_len_2d"><code class="docutils literal notranslate"><span class="pre">vec_len_2d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../biot_savart/#biot_savart.vec_unit"><code class="docutils literal notranslate"><span class="pre">vec_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gics/">gics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gics/#gics.E_horizontal"><code class="docutils literal notranslate"><span class="pre">E_horizontal()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gics/#gics.cartesian_to_spherical"><code class="docutils literal notranslate"><span class="pre">cartesian_to_spherical()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gics/#gics.cartesian_to_spherical_vector"><code class="docutils literal notranslate"><span class="pre">cartesian_to_spherical_vector()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gics/#gics.mkdir_path"><code class="docutils literal notranslate"><span class="pre">mkdir_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gics/#gics.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">spherical_to_cartesian()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../magnetopause2d/">magnetopause2d</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../magnetopause3d/">magnetopause3d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../magnetopause3d/#magnetopause3d.make_surface"><code class="docutils literal notranslate"><span class="pre">make_surface()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../shue/">shue</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../shue/#shue.f_shue"><code class="docutils literal notranslate"><span class="pre">f_shue()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tsyganenko/">tsyganenko</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tsyganenko/#tsyganenko.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">spherical_to_cartesian()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tsyganenko/#tsyganenko.tsyganenko_b"><code class="docutils literal notranslate"><span class="pre">tsyganenko_b()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tsyganenko/#tsyganenko.tsyganenko_ocb"><code class="docutils literal notranslate"><span class="pre">tsyganenko_ocb()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tsyganenko/#tsyganenko.tsyganenko_open"><code class="docutils literal notranslate"><span class="pre">tsyganenko_open()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tsyganenko/#tsyganenko.tsyganenko_trace"><code class="docutils literal notranslate"><span class="pre">tsyganenko_trace()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../miscellaneous/" class="btn btn-neutral float-left" title="miscellaneous" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../biot_savart/" class="btn btn-neutral float-right" title="biot_savart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, University of Helsinki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

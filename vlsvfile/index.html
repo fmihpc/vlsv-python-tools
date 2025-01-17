@@ -1,0 +1,1589 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vlsvfile &mdash; analysator  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="miscellaneous" href="../miscellaneous/" />
+    <link rel="prev" title="calculations" href="../calculations/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            analysator
+              <img src="../_static/logo_color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plot/">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculations/">calculations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">vlsvfile</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.vlsvfile.VlasiatorReader"><code class="docutils literal notranslate"><span class="pre">VlasiatorReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.vlsvfile.VlsvParticles"><code class="docutils literal notranslate"><span class="pre">VlsvParticles</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvParticles.list"><code class="docutils literal notranslate"><span class="pre">VlsvParticles.list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvParticles.read_particles"><code class="docutils literal notranslate"><span class="pre">VlsvParticles.read_particles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvParticles.read_particles_all"><code class="docutils literal notranslate"><span class="pre">VlsvParticles.read_particles_all()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader"><code class="docutils literal notranslate"><span class="pre">VlsvReader</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.build_cell_vertices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.build_cell_vertices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.cellid_has_vdf"><code class="docutils literal notranslate"><span class="pre">VlsvReader.cellid_has_vdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.check_parameter"><code class="docutils literal notranslate"><span class="pre">VlsvReader.check_parameter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.check_population"><code class="docutils literal notranslate"><span class="pre">VlsvReader.check_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.check_variable"><code class="docutils literal notranslate"><span class="pre">VlsvReader.check_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.construct_velocity_cell_coordinates"><code class="docutils literal notranslate"><span class="pre">VlsvReader.construct_velocity_cell_coordinates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.construct_velocity_cell_nodes"><code class="docutils literal notranslate"><span class="pre">VlsvReader.construct_velocity_cell_nodes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.construct_velocity_cells"><code class="docutils literal notranslate"><span class="pre">VlsvReader.construct_velocity_cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.downsample_fsgrid_subarray"><code class="docutils literal notranslate"><span class="pre">VlsvReader.downsample_fsgrid_subarray()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.fsgrid_array_to_vg"><code class="docutils literal notranslate"><span class="pre">VlsvReader.fsgrid_array_to_vg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_all_variables"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_all_variables()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_amr_level"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_amr_level()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_bbox_fsgrid_slicemap"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_bbox_fsgrid_slicemap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_bbox_fsgrid_subarray"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_bbox_fsgrid_subarray()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_bbox"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_coordinates"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_coordinates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_corner_vertices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_corner_vertices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_dx"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_dx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_fsgrid"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_fsgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_fsgrid_slicemap"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_fsgrid_slicemap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_fsgrid_subarray"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_fsgrid_subarray()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_indices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_neighbor"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cell_neighbor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cellid"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cellid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cellid_locations"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cellid_locations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cellid_with_vdf"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_cellid_with_vdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_config"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_config_string"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_config_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_dual"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_dual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_duals"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_duals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_cell_size"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_fsgrid_cell_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_coordinates"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_fsgrid_coordinates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_indices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_fsgrid_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_mesh_extent"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_fsgrid_mesh_extent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_mesh_size"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_fsgrid_mesh_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_slice_indices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_fsgrid_slice_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_element_coords"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_ionosphere_element_coords()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_element_corners"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_ionosphere_element_corners()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_latlon_coords"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_ionosphere_latlon_coords()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_mesh_area"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_ionosphere_mesh_area()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_mesh_size"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_ionosphere_mesh_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_node_coords"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_ionosphere_node_coords()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_max_refinement_level"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_max_refinement_level()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_precipitation_centre_energy"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_precipitation_centre_energy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_spatial_block_size"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_spatial_block_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_spatial_mesh_extent"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_spatial_mesh_extent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_spatial_mesh_size"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_spatial_mesh_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_unique_cellids"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_unique_cellids()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_block_coordinates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_indices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_block_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_size"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_block_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_blocks"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_blocks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_cell_coordinates"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_cell_coordinates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_cell_ids"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_cell_ids()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_mesh_dv"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_mesh_dv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_mesh_extent"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_mesh_extent()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_mesh_size"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_velocity_mesh_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_vertex_coordinates_from_indices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_vertex_coordinates_from_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_vertex_indices"><code class="docutils literal notranslate"><span class="pre">VlsvReader.get_vertex_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.list"><code class="docutils literal notranslate"><span class="pre">VlsvReader.list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.optimize_clear_fileindex_for_cellid"><code class="docutils literal notranslate"><span class="pre">VlsvReader.optimize_clear_fileindex_for_cellid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.optimize_clear_fileindex_for_cellid_blocks"><code class="docutils literal notranslate"><span class="pre">VlsvReader.optimize_clear_fileindex_for_cellid_blocks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.optimize_close_file"><code class="docutils literal notranslate"><span class="pre">VlsvReader.optimize_close_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.optimize_open_file"><code class="docutils literal notranslate"><span class="pre">VlsvReader.optimize_open_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.print_config"><code class="docutils literal notranslate"><span class="pre">VlsvReader.print_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.print_version"><code class="docutils literal notranslate"><span class="pre">VlsvReader.print_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_attribute"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_attribute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_blocks"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_blocks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_fsgrid_variable"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_fsgrid_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_fsgrid_variable_cellid"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_fsgrid_variable_cellid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_interpolated_fsgrid_variable"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_interpolated_fsgrid_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_interpolated_ionosphere_variable"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_interpolated_ionosphere_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_interpolated_variable"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_interpolated_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_interpolated_variable_irregular"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_interpolated_variable_irregular()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_ionosphere_node_variable_at_elements"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_ionosphere_node_variable_at_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_ionosphere_variable"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_ionosphere_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_metadata"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_parameter"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_parameter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_from_cache"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_variable_from_cache()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_variable_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_to_cache"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_variable_to_cache()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_velocity_cells"><code class="docutils literal notranslate"><span class="pre">VlsvReader.read_velocity_cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.upsample_fsgrid_subarray"><code class="docutils literal notranslate"><span class="pre">VlsvReader.upsample_fsgrid_subarray()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.vlsvfile.VlsvVtkReader"><code class="docutils literal notranslate"><span class="pre">VlsvVtkReader</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvVtkReader.RequestData"><code class="docutils literal notranslate"><span class="pre">VlsvVtkReader.RequestData()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvVtkReader.RequestInformation"><code class="docutils literal notranslate"><span class="pre">VlsvVtkReader.RequestInformation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter"><code class="docutils literal notranslate"><span class="pre">VlsvWriter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter.clone_file"><code class="docutils literal notranslate"><span class="pre">VlsvWriter.clone_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter.copy_variables"><code class="docutils literal notranslate"><span class="pre">VlsvWriter.copy_variables()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter.copy_variables_list"><code class="docutils literal notranslate"><span class="pre">VlsvWriter.copy_variables_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter.write"><code class="docutils literal notranslate"><span class="pre">VlsvWriter.write()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter.write_variable"><code class="docutils literal notranslate"><span class="pre">VlsvWriter.write_variable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter.write_variable_info"><code class="docutils literal notranslate"><span class="pre">VlsvWriter.write_variable_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.vlsvfile.VlsvWriter.write_velocity_space"><code class="docutils literal notranslate"><span class="pre">VlsvWriter.write_velocity_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/">miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">analysator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">vlsvfile</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/vlsvfile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vlsvfile">
+<h1>vlsvfile<a class="headerlink" href="#vlsvfile" title="Link to this heading"></a></h1>
+<p>VlsvFile is responsibe for implementing read and write functionality for the vlsv format, as well as defining data reducers and reduction pipelines. Some of this will be likely moved around to be more modular in some indefinite point in the future.</p>
+<p id="module-pytools.vlsvfile">The vlsvfile module has all the classes related to reading and writing vlsv files</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span>
+<span class="n">pt</span><span class="o">.</span><span class="n">vlsvfile</span><span class="o">.</span>
+<span class="c1">#press [tab] -&gt; get the functions</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlasiatorReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytools.vlsvfile.</span></span><span class="sig-name descname"><span class="pre">VlasiatorReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fsGridDecomposition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlasiatorReader" title="Link to this definition"></a></dt>
+<dd><p>Class for reading VLSV files with support for Vlasiator velocity space and structures</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvParticles">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytools.vlsvfile.</span></span><span class="sig-name descname"><span class="pre">VlsvParticles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvParticles" title="Link to this definition"></a></dt>
+<dd><p>Class for reading VLSV files of particle pusher output</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvParticles.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvParticles.list" title="Link to this definition"></a></dt>
+<dd><p>Print out a description of the content of the file. Useful
+for interactive usage</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvParticles.read_particles">
+<span class="sig-name descname"><span class="pre">read_particles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvParticles.read_particles" title="Link to this definition"></a></dt>
+<dd><p>Read particle pusher data from the open vlsv file. 
+This routine returns only active particles.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvParticles.read_particles_all">
+<span class="sig-name descname"><span class="pre">read_particles_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvParticles.read_particles_all" title="Link to this definition"></a></dt>
+<dd><p>Read particle pusher data from the open vlsv file.
+This routine returns all particles, including inactive ones.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytools.vlsvfile.</span></span><span class="sig-name descname"><span class="pre">VlsvReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fsGridDecomposition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader" title="Link to this definition"></a></dt>
+<dd><p>Class for reading VLSV files</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.build_cell_vertices">
+<span class="sig-name descname"><span class="pre">build_cell_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.build_cell_vertices" title="Link to this definition"></a></dt>
+<dd><p>Builds, caches and returns the vertices that lie on the surfaces of CellIDs cid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cid</strong> – numpy array of CellIDs</p></li>
+<li><p><strong>prune_unique</strong> – bool [False], if you suspect you might be calling the function many times with the 
+same CellID in the list, it might be beneficial to enable this and not repeat the operation for duplicate entries.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of cell c (int) : set of vertex indices (3-tuple) that touch the cell c.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.cellid_has_vdf">
+<span class="sig-name descname"><span class="pre">cellid_has_vdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.cellid_has_vdf" title="Link to this definition"></a></dt>
+<dd><p>Returns whether the cid in question has a vdf or not
+:param coords:    the cellid to test for
+:returns: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.check_parameter">
+<span class="sig-name descname"><span class="pre">check_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.check_parameter" title="Link to this definition"></a></dt>
+<dd><p>Checks if a given parameter is in the vlsv reader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Name of the parameter</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the parameter is in the vlsv file, false if not</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should be used for checking if a parameter exists, e.g. for different Vlasiator versions and time output</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage:</span>
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">vlsvfile</span><span class="o">.</span><span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;test.vlsv&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">vlsvReader</span><span class="o">.</span><span class="n">check_parameter</span><span class="p">(</span> <span class="s2">&quot;time&quot;</span> <span class="p">):</span>
+   <span class="n">time</span> <span class="o">=</span> <span class="n">vlsvReader</span><span class="o">.</span><span class="n">read_parameter</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">vlsvReader</span><span class="o">.</span><span class="n">check_parameter</span><span class="p">(</span> <span class="s2">&quot;t&quot;</span> <span class="p">):</span>
+   <span class="n">time</span> <span class="o">=</span> <span class="n">vlsvReader</span><span class="o">.</span><span class="n">read_parameter</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.check_population">
+<span class="sig-name descname"><span class="pre">check_population</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">popname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.check_population" title="Link to this definition"></a></dt>
+<dd><p>Checks if a given population is in the vlsv file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Name of the population</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the population is in the vlsv file, false if not</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage:</span>
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">vlsvfile</span><span class="o">.</span><span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;test.vlsv&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">vlsvReader</span><span class="o">.</span><span class="n">check_population</span><span class="p">(</span> <span class="s2">&quot;avgs&quot;</span> <span class="p">):</span>
+   <span class="n">plot_population</span><span class="p">(</span><span class="s1">&#39;avgs&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="k">if</span> <span class="n">vlsvReader</span><span class="o">.</span><span class="n">check_population</span><span class="p">(</span> <span class="s2">&quot;proton&quot;</span> <span class="p">):</span>
+      <span class="c1"># File is newer with proton population</span>
+      <span class="n">plot_population</span><span class="p">(</span><span class="s1">&#39;proton&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.check_variable">
+<span class="sig-name descname"><span class="pre">check_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.check_variable" title="Link to this definition"></a></dt>
+<dd><p>Checks if a given variable is in the vlsv reader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Name of the variable</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the variable is in the vlsv file, false if not</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should be used for checking if a variable exists in case a function behaves differently for ex. if B vector is in the vlsv and if not</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage:</span>
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">vlsvfile</span><span class="o">.</span><span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;test.vlsv&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">vlsvReader</span><span class="o">.</span><span class="n">check_variable</span><span class="p">(</span> <span class="s2">&quot;B&quot;</span> <span class="p">):</span>
+   <span class="c1"># Variable can be plotted</span>
+   <span class="n">plot_B</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="c1"># Variable not in the vlsv file</span>
+   <span class="n">plot_B_vol</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.construct_velocity_cell_coordinates">
+<span class="sig-name descname"><span class="pre">construct_velocity_cell_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.construct_velocity_cell_coordinates" title="Link to this definition"></a></dt>
+<dd><p>Returns velocity cell coordinates in given blocks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blocks</strong> – list of block ids</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array containing the velocity cell ids e.g. np.array([4,2,56,44,522, ..])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.construct_velocity_cell_nodes">
+<span class="sig-name descname"><span class="pre">construct_velocity_cell_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.construct_velocity_cell_nodes" title="Link to this definition"></a></dt>
+<dd><p>Returns velocity cell nodes in given blocks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blocks</strong> – list of block ids</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array containing velocity cell nodes and the keys for velocity cells</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is used for constructing velocity space inside the mayavi module</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">grid</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.construct_velocity_cells">
+<span class="sig-name descname"><span class="pre">construct_velocity_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.construct_velocity_cells" title="Link to this definition"></a></dt>
+<dd><p>Returns velocity cells in given blocks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blocks</strong> – list of block ids</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array containing the velocity cell ids e.g. np.array([4,2,56,44,522, ..])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.downsample_fsgrid_subarray">
+<span class="sig-name descname"><span class="pre">downsample_fsgrid_subarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.downsample_fsgrid_subarray" title="Link to this definition"></a></dt>
+<dd><p>Returns a mean value of fsgrid values underlying the SpatialGrid cellid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.fsgrid_array_to_vg">
+<span class="sig-name descname"><span class="pre">fsgrid_array_to_vg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.fsgrid_array_to_vg" title="Link to this definition"></a></dt>
+<dd><p>Downsample, via averaging, an fsgrid array to the Vlasov grid
+of this reader.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>array</strong> – array with first three dimensions corresponding to the
+dimensions of the fsgrid associated with this reader.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Vlasov grid data (in file order) of array averaged to Vlasov Grid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_all_variables">
+<span class="sig-name descname"><span class="pre">get_all_variables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_all_variables" title="Link to this definition"></a></dt>
+<dd><p>Returns all variables in the vlsv reader and the data reducer
+:returns:                List of variable is in the vlsv file
+.. code-block:: python</p>
+<blockquote>
+<div><p># Example usage:
+vlsvReader = pt.vlsvfile.VlsvReader(“test.vlsv”)
+vars = vlsvReader.get_variables()</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_amr_level">
+<span class="sig-name descname"><span class="pre">get_amr_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_amr_level" title="Link to this definition"></a></dt>
+<dd><p>Returns the AMR level of a given cell defined by its cellid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cellid</strong> – The cell’s cellid</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cell’s refinement level in the AMR</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_bbox_fsgrid_slicemap">
+<span class="sig-name descname"><span class="pre">get_bbox_fsgrid_slicemap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_bbox_fsgrid_slicemap" title="Link to this definition"></a></dt>
+<dd><p>Returns a slice tuple of fsgrid indices that are contained in the (low, up) bounding box.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_bbox_fsgrid_subarray">
+<span class="sig-name descname"><span class="pre">get_bbox_fsgrid_subarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_bbox_fsgrid_subarray" title="Link to this definition"></a></dt>
+<dd><p>Returns a subarray of the fsgrid array, corresponding to the (low, up) bounding box.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_bbox">
+<span class="sig-name descname"><span class="pre">get_cell_bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_bbox" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box of a given cell defined by its cellid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cellid</strong> – The cell’s cellid</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cell’s bbox [xmin,ymin,zmin],[xmax,ymax,zmax]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_coordinates">
+<span class="sig-name descname"><span class="pre">get_cell_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_coordinates" title="Link to this definition"></a></dt>
+<dd><p>Returns a given cell’s coordinates as a numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cellids</strong> – The array of cell IDs</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array with the coordinates</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cellid" title="pytools.vlsvfile.VlsvReader.get_cellid"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_cellid()</span></code></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The cell ids go from 1 .. max not from 0</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_corner_vertices">
+<span class="sig-name descname"><span class="pre">get_cell_corner_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_corner_vertices" title="Link to this definition"></a></dt>
+<dd><p>Builds, caches and returns the vertices that lie on the corners of CellIDs cid.
+:parameter cid: numpy array of CellIDs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary of cell c (int) : 8-tuple of vertex indices (3-tuples).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_dx">
+<span class="sig-name descname"><span class="pre">get_cell_dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_dx" title="Link to this definition"></a></dt>
+<dd><p>Returns the dx of a given cell defined by its cellid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cellid</strong> – The cell’s cellid</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cell’s size [dx, dy, dz]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_fsgrid">
+<span class="sig-name descname"><span class="pre">get_cell_fsgrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_fsgrid" title="Link to this definition"></a></dt>
+<dd><p>Returns a slice tuple of fsgrid indices that are contained in the SpatialGrid
+cell.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_fsgrid_slicemap">
+<span class="sig-name descname"><span class="pre">get_cell_fsgrid_slicemap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_fsgrid_slicemap" title="Link to this definition"></a></dt>
+<dd><p>Returns a slice tuple of fsgrid indices that are contained in the SpatialGrid
+cell.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_fsgrid_subarray">
+<span class="sig-name descname"><span class="pre">get_cell_fsgrid_subarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_fsgrid_subarray" title="Link to this definition"></a></dt>
+<dd><p>Returns a subarray of the fsgrid array, corresponding to the fsgrid
+covered by the SpatialGrid cellid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_indices">
+<span class="sig-name descname"><span class="pre">get_cell_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reflevels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_indices" title="Link to this definition"></a></dt>
+<dd><p>Returns a given cell’s indices as a numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cellid</strong> – The cell’s ID, numpy array</p></li>
+<li><p><strong>reflevel</strong> – The cell’s refinement level in the AMR</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array with the coordinates</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cellid" title="pytools.vlsvfile.VlsvReader.get_cellid"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_cellid()</span></code></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The cell ids go from 1 .. max not from 0</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cell_neighbor">
+<span class="sig-name descname"><span class="pre">get_cell_neighbor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellidss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offsetss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_uniques</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cell_neighbor" title="Link to this definition"></a></dt>
+<dd><p>Returns a given cells neighbor at offset (in indices)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cellids</strong> – The cell’s ID</p></li>
+<li><p><strong>offsets</strong> – The offset to the neighbor in indices</p></li>
+<li><p><strong>periodic</strong> – For each dimension, is the system periodic</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the cellid of the neighbor</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Returns 0 if the offset is out of bounds!</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cellid">
+<span class="sig-name descname"><span class="pre">get_cellid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cellid" title="Link to this definition"></a></dt>
+<dd><p>Returns the cell ids at given coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coords</strong> – The cells’ coordinates</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the cell ids</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Returns 0 if the cellid is out of bounds!</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cellid_locations">
+<span class="sig-name descname"><span class="pre">get_cellid_locations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cellid_locations" title="Link to this definition"></a></dt>
+<dd><p>Returns a dictionary with cell id as the key and the index of the cell id as the value. The index is used to locate the cell id’s values in the arrays that this reader returns</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_cellid_with_vdf">
+<span class="sig-name descname"><span class="pre">get_cellid_with_vdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_cellid_with_vdf" title="Link to this definition"></a></dt>
+<dd><p>Returns the cell ids nearest to test points, that contain VDFs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coords</strong> – Test coordinates [meters] of N_in points in ND-dimensional space
+array with shape [N_in, ND] or [ND]</p>
+</dd>
+</dl>
+<p>Example: cellid = vlsvReader.get_cellid_with_vdf(np.array([1e8, 0, 0]))
+:returns: the cell ids</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_config" title="Link to this definition"></a></dt>
+<dd><p>Gets config information from VLSV file</p>
+<dl class="simple">
+<dt>:returns a nested dictionary of dictionaries,</dt><dd><p>where keys (str) are config file group headings (appearing in ‘[]’)
+and values are dictionaries which contain (lists of) strings</p>
+</dd>
+</dl>
+<p>If the same heading/parameter pair appears &gt;once in the config file,
+the different values are appended to the list .</p>
+<p>EXAMPLE:
+if the config contains these lines:</p>
+<blockquote>
+<div><p>[proton_precipitation]
+nChannels = 9</p>
+</div></blockquote>
+<p>then the following returns [‘9’]:
+vlsvReader.get_config()[‘proton_precipitation’][‘nChannels’]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_config_string">
+<span class="sig-name descname"><span class="pre">get_config_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_config_string" title="Link to this definition"></a></dt>
+<dd><p>Gets config information from VLSV file.
+TAG is hardcoded to CONFIG</p>
+<p>:returns configuration file string if config is found otherwise returns None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_dual">
+<span class="sig-name descname"><span class="pre">get_dual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_dual" title="Link to this definition"></a></dt>
+<dd><p>Find the duals that contain the coordinate points pts. This will call the iterative find_ksi function
+to see if the resulting interpolation weights for the coordinate are in the range [0,1]; if not, it will iterate 
+through neighbouring duals until a dual is found.
+:parameter pts: numpy array of coordinates (N,3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>duals (numpy array of N 3-tuples), ksis (numpy array of interpolation weights (N, 8))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_duals">
+<span class="sig-name descname"><span class="pre">get_duals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_duals" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Get the union of dual cells that cover each of CellIDs in cids.</dt><dd><p>Assumes all required duals are defined! TODO handling of missing duals, do not call separately.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict of vertex-indices v (3-tuple) : 8-tuple of cellids (corners of dual cells indexed by v)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_fsgrid_cell_size">
+<span class="sig-name descname"><span class="pre">get_fsgrid_cell_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_cell_size" title="Link to this definition"></a></dt>
+<dd><p>Read fsgrid cell size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum and minimum coordinates of the mesh, [dx, dy, dz]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_fsgrid_coordinates">
+<span class="sig-name descname"><span class="pre">get_fsgrid_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ri</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_coordinates" title="Link to this definition"></a></dt>
+<dd><p>Returns real-space center coordinates of the fsgrid 3-index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_fsgrid_indices">
+<span class="sig-name descname"><span class="pre">get_fsgrid_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_indices" title="Link to this definition"></a></dt>
+<dd><p>Convert spatial coordinates coords to an index array [xi, yi, zi] for fsgrid</p>
+<p>:returns 3-tuple of integers [xi, yi, zi] corresponding to fsgrid cell containing coords (low-inclusive)
+Example:
+ii = f.get_fsgrid_mesh_extent(coords)
+fsvar_at_coords = fsvar_array.item(ii)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_fsgrid_mesh_extent">
+<span class="sig-name descname"><span class="pre">get_fsgrid_mesh_extent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_mesh_extent" title="Link to this definition"></a></dt>
+<dd><p>Read fsgrid mesh extent</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum and minimum coordinates of the mesh, [xmin, ymin, zmin, xmax, ymax, zmax]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_fsgrid_mesh_size">
+<span class="sig-name descname"><span class="pre">get_fsgrid_mesh_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_mesh_size" title="Link to this definition"></a></dt>
+<dd><p>Read fsgrid mesh size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size of mesh in number of cells, array with three elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_fsgrid_slice_indices">
+<span class="sig-name descname"><span class="pre">get_fsgrid_slice_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_fsgrid_slice_indices" title="Link to this definition"></a></dt>
+<dd><p>Get indices for a subarray of an fsgrid variable, in the cuboid from lower to upper.
+This is meant for mapping a set of fsgrid cells to a given SpatialGrid cell.
+Shifts the corners (lower, upper) by dx_fsgrid*eps inward, if direct low-inclusive behaviour
+is required, set kword eps = 0.</p>
+<p>:returns two 3-tuples of integers.
+Example:
+ii = f.get_fsgrid_mesh_extent(coords)
+fsvar_at_coords = fsvar_array.item(ii)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_ionosphere_element_coords">
+<span class="sig-name descname"><span class="pre">get_ionosphere_element_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_element_coords" title="Link to this definition"></a></dt>
+<dd><p>Read coordinates of ionosphere elements (triangle barycenters)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[x, y, z] array of ionosphere element barycenter coordinates (in meters).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_ionosphere_element_corners">
+<span class="sig-name descname"><span class="pre">get_ionosphere_element_corners</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_element_corners" title="Link to this definition"></a></dt>
+<dd><p>Read ionosphere mesh element corners</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[c1,c2,c3] array of ionosphere mesh node indices (starting from 0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_ionosphere_latlon_coords">
+<span class="sig-name descname"><span class="pre">get_ionosphere_latlon_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_latlon_coords" title="Link to this definition"></a></dt>
+<dd><p>Read ionosphere node coordinates (in magnetic longitude / latitude)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[lat,lon] array of ionosphere node coordinates</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_ionosphere_mesh_area">
+<span class="sig-name descname"><span class="pre">get_ionosphere_mesh_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_mesh_area" title="Link to this definition"></a></dt>
+<dd><p>Read areas of ionosphere elements (triangular mesh)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1D array, areas of the triangular elements [m^2]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_ionosphere_mesh_size">
+<span class="sig-name descname"><span class="pre">get_ionosphere_mesh_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_mesh_size" title="Link to this definition"></a></dt>
+<dd><p>Read size of the ionosphere mesh, if there is one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size of the mesh in number of nodes and elements, array with two elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_ionosphere_node_coords">
+<span class="sig-name descname"><span class="pre">get_ionosphere_node_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_ionosphere_node_coords" title="Link to this definition"></a></dt>
+<dd><p>Read ionosphere node coordinates (in cartesian GSM coordinate system).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[x,y,z] array of ionosphere node coordinates (in meters)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_max_refinement_level">
+<span class="sig-name descname"><span class="pre">get_max_refinement_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_max_refinement_level" title="Link to this definition"></a></dt>
+<dd><p>Returns the maximum refinement level of the AMR</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_precipitation_centre_energy">
+<span class="sig-name descname"><span class="pre">get_precipitation_centre_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_precipitation_centre_energy" title="Link to this definition"></a></dt>
+<dd><p>Read precipitation energy bins</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array of centre energies</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_spatial_block_size">
+<span class="sig-name descname"><span class="pre">get_spatial_block_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_spatial_block_size" title="Link to this definition"></a></dt>
+<dd><p>Read spatial mesh block size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size of block in number of cells, array with three elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_spatial_mesh_extent">
+<span class="sig-name descname"><span class="pre">get_spatial_mesh_extent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_spatial_mesh_extent" title="Link to this definition"></a></dt>
+<dd><p>Read spatial mesh extent</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum and minimum coordinates of the mesh, [xmin, ymin, zmin, xmax, ymax, zmax]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_spatial_mesh_size">
+<span class="sig-name descname"><span class="pre">get_spatial_mesh_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_spatial_mesh_size" title="Link to this definition"></a></dt>
+<dd><p>Read spatial mesh size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size of mesh in number of blocks, array with three elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_unique_cellids">
+<span class="sig-name descname"><span class="pre">get_unique_cellids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_unique_cellids" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Returns a list of cellids containing all the coordinates in coords,</dt><dd><p>with no duplicate cellids. Relative order of elements is conserved.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coords</strong> – A list of coordinates</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of unique cell ids</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates">
+<span class="sig-name descname"><span class="pre">get_velocity_block_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates" title="Link to this definition"></a></dt>
+<dd><p>Returns the block coordinates of the given blocks in a numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blocks</strong> – list of block ids</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array containing the block coordinates e.g. np.array([np.array([2,1,3]), np.array([5,6,6]), ..])</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_cell_coordinates" title="pytools.vlsvfile.VlsvReader.get_velocity_cell_coordinates"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_velocity_cell_coordinates()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_block_indices">
+<span class="sig-name descname"><span class="pre">get_velocity_block_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_indices" title="Link to this definition"></a></dt>
+<dd><p>Returns the block indices of the given blocks in a numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blocks</strong> – list of block ids</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array containing the block indices e.g. np.array([np.array([2,1,3]), np.array([5,6,6]), ..])</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates" title="pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_velocity_block_coordinates()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_block_size">
+<span class="sig-name descname"><span class="pre">get_velocity_block_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_size" title="Link to this definition"></a></dt>
+<dd><p>Read velocity mesh block size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size of block in number of cells, array with three elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_blocks">
+<span class="sig-name descname"><span class="pre">get_velocity_blocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blockCoordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_blocks" title="Link to this definition"></a></dt>
+<dd><p>Returns the block ids of the given block coordinates in a numpy array form</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blockcoordinates</strong> – list of block coordinates e.g. np.array([np.array([2,1,3]), np.array([5,6,6]), ..])</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a numpy array containing the block ids e.g. np.array([4,2,56,44,2, ..])</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates" title="pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_velocity_block_coordinates()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_cell_coordinates">
+<span class="sig-name descname"><span class="pre">get_velocity_cell_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcellids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_cell_coordinates" title="Link to this definition"></a></dt>
+<dd><p>Returns a given velocity cell’s coordinates as a numpy array</p>
+<p>Arguments:
+:param vcellids:       The velocity cell’s ID
+:returns: a numpy array with the coordinates</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_cell_coordinates" title="pytools.vlsvfile.VlsvReader.get_cell_coordinates"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_cell_coordinates()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates" title="pytools.vlsvfile.VlsvReader.get_velocity_block_coordinates"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_velocity_block_coordinates()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_cell_ids">
+<span class="sig-name descname"><span class="pre">get_velocity_cell_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcellcoord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_cell_ids" title="Link to this definition"></a></dt>
+<dd><p>Returns velocity cell ids of given coordinate</p>
+<p>Arguments:
+:param vcellcoords: One 3d coordinate
+:returns: Velocity cell id</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.get_velocity_cell_coordinates" title="pytools.vlsvfile.VlsvReader.get_velocity_cell_coordinates"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_velocity_cell_coordinates()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_mesh_dv">
+<span class="sig-name descname"><span class="pre">get_velocity_mesh_dv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_mesh_dv" title="Link to this definition"></a></dt>
+<dd><p>Read velocity mesh cell size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Velocity mesh cell size, array with three elements [dvx, dvy, dvz]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_mesh_extent">
+<span class="sig-name descname"><span class="pre">get_velocity_mesh_extent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_mesh_extent" title="Link to this definition"></a></dt>
+<dd><p>Read velocity mesh extent</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum and minimum coordinates of the mesh, [vxmin, vymin, vzmin, vxmax, vymax, vzmax]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_velocity_mesh_size">
+<span class="sig-name descname"><span class="pre">get_velocity_mesh_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_velocity_mesh_size" title="Link to this definition"></a></dt>
+<dd><p>Read velocity mesh size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size of mesh in number of blocks, array with three elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_vertex_coordinates_from_indices">
+<span class="sig-name descname"><span class="pre">get_vertex_coordinates_from_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_vertex_coordinates_from_indices" title="Link to this definition"></a></dt>
+<dd><p>Convert vertex indices to physical coordinates.
+:param indices: numpy array of vertex indices, either (3,) or (N,3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array of coordinates, with matching shape to indices</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.get_vertex_indices">
+<span class="sig-name descname"><span class="pre">get_vertex_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.get_vertex_indices" title="Link to this definition"></a></dt>
+<dd><p>Get dual grid vertex indices for all coordinates.</p>
+<p>Works by truncation to integer indices at fsgrid resolution, for cell low-corners.
+:param coordinates: np.array of coordinates, shaped either (3,) or (N,3)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datareducer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.list" title="Link to this definition"></a></dt>
+<dd><p>Print out a description of the content of the file. Useful
+for interactive usage. Default is to list parameters and variables, query selection can be adjusted with keywords:</p>
+<p>Default and supported keywords:</p>
+<p>parameter=True 
+variable=True
+mesh=False
+datareducer=False 
+operator=False 
+other=False</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.optimize_clear_fileindex_for_cellid">
+<span class="sig-name descname"><span class="pre">optimize_clear_fileindex_for_cellid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.optimize_clear_fileindex_for_cellid" title="Link to this definition"></a></dt>
+<dd><p>Clears a private variable containing cell ids and their locations</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should only be used for optimization purposes.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.optimize_clear_fileindex_for_cellid_blocks">
+<span class="sig-name descname"><span class="pre">optimize_clear_fileindex_for_cellid_blocks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.optimize_clear_fileindex_for_cellid_blocks" title="Link to this definition"></a></dt>
+<dd><p>Clears a private variable containing number of blocks and offsets for particular cell ids</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should only be used for optimization purposes.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.optimize_close_file">
+<span class="sig-name descname"><span class="pre">optimize_close_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.optimize_close_file" title="Link to this definition"></a></dt>
+<dd><p>Closes the vlsv file
+Files are opened and closed automatically upon reading and in the case of reading multiple times it will help to keep the file open with this command</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should only be used for optimization purposes.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.optimize_open_file">
+<span class="sig-name descname"><span class="pre">optimize_open_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.optimize_open_file" title="Link to this definition"></a></dt>
+<dd><p>Opens the vlsv file for reading
+Files are opened and closed automatically upon reading and in the case of reading multiple times it will help to keep the file open with this command</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should only be used for optimization purposes.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.print_config">
+<span class="sig-name descname"><span class="pre">print_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.print_config" title="Link to this definition"></a></dt>
+<dd><p>Prints config information from VLSV file.</p>
+<p>:returns True if config is found otherwise returns False</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.print_version">
+<span class="sig-name descname"><span class="pre">print_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.print_version" title="Link to this definition"></a></dt>
+<dd><p>Prints version information from VLSV file.
+TAG is hardcoded to VERSION</p>
+<p>:returns True if version is found otherwise returns False</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read" title="Link to this definition"></a></dt>
+<dd><p>Read data from the open vlsv file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the data array</p></li>
+<li><p><strong>tag</strong> – Tag of the data array.</p></li>
+<li><p><strong>mesh</strong> – Mesh for the data array</p></li>
+<li><p><strong>operator</strong> – Datareduction operator. “pass” does no operation on data.</p></li>
+<li><p><strong>cellids</strong> – If -1 then all data is read. If nonzero then only the vector
+for the specified cell id or cellids is read</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy array with the data</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable" title="pytools.vlsvfile.VlsvReader.read_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_attribute">
+<span class="sig-name descname"><span class="pre">read_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_attribute" title="Link to this definition"></a></dt>
+<dd><p>Read data from the open vlsv file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the data array</p></li>
+<li><p><strong>tag</strong> – Tag of the data array.</p></li>
+<li><p><strong>mesh</strong> – Mesh for the data array</p></li>
+<li><p><strong>operator</strong> – Datareduction operator. “pass” does no operation on data.</p></li>
+<li><p><strong>cellids</strong> – If -1 then all data is read. If nonzero then only the vector
+for the specified cell id or cellids is read</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy array with the data</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable" title="pytools.vlsvfile.VlsvReader.read_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_blocks">
+<span class="sig-name descname"><span class="pre">read_blocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_blocks" title="Link to this definition"></a></dt>
+<dd><p>Read raw block data from the open file and return the data along with block ids</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cellid</strong> – Cell ID of the cell whose velocity blocks are read</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A numpy array with block ids and data eg [array([2, 5, 6, 234, 21]), array([1.0e-8, 2.1e-8, 2.1e-8, 0, 4.0e-8])]</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_velocity_cells" title="pytools.vlsvfile.VlsvReader.read_velocity_cells"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_velocity_cells()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_fsgrid_variable">
+<span class="sig-name descname"><span class="pre">read_fsgrid_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_fsgrid_variable" title="Link to this definition"></a></dt>
+<dd><p>Reads fsgrid variables from the open vlsv file.
+Arguments:
+:param name: Name of the variable
+:param operator: Datareduction operator. “pass” does no operation on data
+:returns: <em>ordered</em> numpy array with the data</p>
+<p>… seealso:: <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable" title="pytools.vlsvfile.VlsvReader.read_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_fsgrid_variable_cellid">
+<span class="sig-name descname"><span class="pre">read_fsgrid_variable_cellid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_fsgrid_variable_cellid" title="Link to this definition"></a></dt>
+<dd><p>Reads fsgrid variables from the open vlsv file.
+Arguments:
+:param name:     Name of the variable
+:param cellids:  SpatialGrid cellids for which to fetch data. Default: return full fsgrid data
+:param operator: Datareduction operator. “pass” does no operation on data
+:returns: <em>ordered</em> list of numpy arrays with the data</p>
+<p>… seealso:: <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_fsgrid_variable" title="pytools.vlsvfile.VlsvReader.read_fsgrid_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_fsgrid_variable()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_interpolated_fsgrid_variable">
+<span class="sig-name descname"><span class="pre">read_interpolated_fsgrid_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[True,</span> <span class="pre">True,</span> <span class="pre">True]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_interpolated_fsgrid_variable" title="Link to this definition"></a></dt>
+<dd><p>Read a linearly interpolated FSgrid variable value from the open vlsv file. Feel free to vectorize!
+Note that this does not account for varying centerings of fsgrid data.
+Arguments:
+:param name: Name of the (FSgrid) variable
+:param coords: Coordinates from which to read data 
+:param periodic: Periodicity of the system. Default is periodic in all dimension
+:param operator: Datareduction operator. “pass” does no operation on data
+:returns: numpy array with the data</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read" title="pytools.vlsvfile.VlsvReader.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_interpolated_ionosphere_variable">
+<span class="sig-name descname"><span class="pre">read_interpolated_ionosphere_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_interpolated_ionosphere_variable" title="Link to this definition"></a></dt>
+<dd><p>Read a linearly interpolated ionosphere variable value from the open vlsv file.
+Arguments:
+:param name: Name of the (ionosphere) variable
+:param coords: Coordinates (x,y,z) from which to read data 
+:param operator: Datareduction operator. “pass” does no operation on data
+:param method: Interpolation method. Not implemented; barycentric interp would fall under linear.
+:returns: numpy array with the data</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read" title="pytools.vlsvfile.VlsvReader.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_interpolated_variable">
+<span class="sig-name descname"><span class="pre">read_interpolated_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[True,</span> <span class="pre">True,</span> <span class="pre">True]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_interpolated_variable" title="Link to this definition"></a></dt>
+<dd><p>Read a linearly interpolated variable value from the open vlsv file.
+Arguments:
+:param name: Name of the variable
+:param coords: Coordinates from which to read data 
+:param periodic: Periodicity of the system. Default is periodic in all dimension
+:param operator: Datareduction operator. “pass” does no operation on data
+:param method: Interpolation method, default “linear”, options: [“nearest”, “linear”]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array with the data</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read" title="pytools.vlsvfile.VlsvReader.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_interpolated_variable_irregular">
+<span class="sig-name descname"><span class="pre">read_interpolated_variable_irregular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[True,</span> <span class="pre">True,</span> <span class="pre">True]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">methodargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'delaunay':</span> <span class="pre">{'qhull_options':</span> <span class="pre">'QJ'},</span> <span class="pre">'rbf':</span> <span class="pre">{'neighbors':</span> <span class="pre">64}}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_interpolated_variable_irregular" title="Link to this definition"></a></dt>
+<dd><p>Read a linearly interpolated variable value from the open vlsv file.
+Arguments:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the variable</p></li>
+<li><p><strong>coords</strong> – Coordinates from which to read data</p></li>
+<li><p><strong>periodic</strong> – Periodicity of the system. Default is periodic in all dimension</p></li>
+<li><p><strong>operator</strong> – Datareduction operator. “pass” does no operation on data</p></li>
+<li><p><strong>method</strong> – Method for interpolation, default “linear” (“nearest”, “rbf, “delaunay”)</p></li>
+<li><p><strong>methodargs</strong> – <p>Dict of dicts to pass kwargs to interpolators. Default values for “rbf”, “delaunay”;</p>
+<p>see scipy.interpolate.RBFInterpolator for rbf and scipy.interpolate.LinearNDInterpolator for delaunay</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy array with the data</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read" title="pytools.vlsvfile.VlsvReader.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_ionosphere_node_variable_at_elements">
+<span class="sig-name descname"><span class="pre">read_ionosphere_node_variable_at_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_ionosphere_node_variable_at_elements" title="Link to this definition"></a></dt>
+<dd><p>Interpolate an ionospheric node variavle to the element barycenters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>varname</strong> – string, specifying variable (or data reducer) defined at ionosphere nodes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>specified variable interpolated to the elements’ barycenters</p>
+<p>note: linear barycentric interpolation is just the sum of 3 corner values divided by 3!</p>
+<p>TODO: check behavior for var.ndim&gt;1</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_ionosphere_variable">
+<span class="sig-name descname"><span class="pre">read_ionosphere_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_ionosphere_variable" title="Link to this definition"></a></dt>
+<dd><p>Reads fsgrid variables from the open vlsv file.
+Arguments:
+:param name: Name of the variable
+:param operator: Datareduction operator. “pass” does no operation on data
+:returns: numpy array with the data in node order</p>
+<p>… seealso:: <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable" title="pytools.vlsvfile.VlsvReader.read_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_metadata">
+<span class="sig-name descname"><span class="pre">read_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_metadata" title="Link to this definition"></a></dt>
+<dd><p>Read variable metadata from the open vlsv file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the data array</p></li>
+<li><p><strong>tag</strong> – Tag of the data array.</p></li>
+<li><p><strong>mesh</strong> – Mesh for the data array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>four strings:
+the unit of the variable as a regular string
+the unit of the variable as a LaTeX-formatted string
+the description of the variable as a LaTeX-formatted string
+the conversion factor to SI units as a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_parameter">
+<span class="sig-name descname"><span class="pre">read_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_parameter" title="Link to this definition"></a></dt>
+<dd><p>Read a parameter from the vlsv file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Name of the parameter</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parameter value</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable" title="pytools.vlsvfile.VlsvReader.read_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_variable">
+<span class="sig-name descname"><span class="pre">read_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_variable" title="Link to this definition"></a></dt>
+<dd><p>Read variables from the open vlsv file. 
+Arguments:
+:param name: Name of the variable
+:param cellids: a value of -1 reads all data
+:param operator: Datareduction operator. “pass” does no operation on data
+:returns: numpy array with the data</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read" title="pytools.vlsvfile.VlsvReader.read"><code class="xref py py-func docutils literal notranslate"><span class="pre">read()</span></code></a> <a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="pytools.vlsvfile.VlsvReader.read_variable_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable_info()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_variable_from_cache">
+<span class="sig-name descname"><span class="pre">read_variable_from_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_variable_from_cache" title="Link to this definition"></a></dt>
+<dd><p>Read variable from cache instead of the vlsv file.
+:param name: Name of the variable
+:param cellids: a value of -1 reads all data
+:param operator: Datareduction operator. “pass” does no operation on data
+:returns: numpy array with the data, same format as read_variable</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable" title="pytools.vlsvfile.VlsvReader.read_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_variable_info">
+<span class="sig-name descname"><span class="pre">read_variable_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_variable_info" title="Link to this definition"></a></dt>
+<dd><p>Read variables from the open vlsv file and input the data into VariableInfo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the variable</p></li>
+<li><p><strong>cellids</strong> – a value of -1 reads all data</p></li>
+<li><p><strong>operator</strong> – Datareduction operator. “pass” does no operation on data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy array with the data</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_variable" title="pytools.vlsvfile.VlsvReader.read_variable"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_variable()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_variable_to_cache">
+<span class="sig-name descname"><span class="pre">read_variable_to_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_variable_to_cache" title="Link to this definition"></a></dt>
+<dd><p>Read variable from vlsv file to cache, for the whole grid and after applying
+operator.
+:param name: Name of the variable (or datareducer)
+:param operator: Datareduction operator. “pass” does no operation on data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.read_velocity_cells">
+<span class="sig-name descname"><span class="pre">read_velocity_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.read_velocity_cells" title="Link to this definition"></a></dt>
+<dd><p>Read velocity cells from a spatial cell</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cellid</strong> – Cell ID of the cell whose velocity cells the function will read</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Map of velocity cell ids (unique for every velocity cell) and corresponding value</p>
+</dd>
+</dl>
+<p>#Example:</p>
+<p>example_cellid = 1111</p>
+<p>velocity_cell_map = vlsvReader.read_velocity_cells(example_cellid)
+velocity_cell_ids = velocity_cell_map.keys()
+velocity_cell_values = velocity_cell_map.values()</p>
+<p>random_index = 4 # Just some index
+random_velocity_cell_id = velocity_cell_ids[random_index]</p>
+<p>print (“Velocity cell value at velocity cell id “ + str(random_velocity_cell_id) + “: “ + str(velocity_cell_map[random_velocity_cell_id]))</p>
+<p># Getting the corresponding coordinates might be more useful than having the velocity cell id so:
+velocity_cell_coordinates = vlsvReader.get_velocity_cell_coordinates(velocity_cell_ids) # Get velocity cell coordinates corresponding to each velocity cell id</p>
+<p>random_velocity_cell_coordinates = velocity_cell_ids[random_index]
+print(“Velocity cell value at velocity cell id “ + str(random_velocity_cell_id) + “and coordinates “ + str(random_velocity_cell_coordinates) + “: “ + str(velocity_cell_map[random_velocity_cell_id]))</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pytools.vlsvfile.VlsvReader.read_blocks" title="pytools.vlsvfile.VlsvReader.read_blocks"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_blocks()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvReader.upsample_fsgrid_subarray">
+<span class="sig-name descname"><span class="pre">upsample_fsgrid_subarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvReader.upsample_fsgrid_subarray" title="Link to this definition"></a></dt>
+<dd><p>Set the elements of the fsgrid array to the value of corresponding SpatialGrid
+cellid. Mutator for array.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvVtkReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytools.vlsvfile.</span></span><span class="sig-name descname"><span class="pre">VlsvVtkReader</span></span><a class="headerlink" href="#pytools.vlsvfile.VlsvVtkReader" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvVtkReader.RequestData">
+<span class="sig-name descname"><span class="pre">RequestData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outInfo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvVtkReader.RequestData" title="Link to this definition"></a></dt>
+<dd><p>Overwritten by subclass to execute the algorithm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvVtkReader.RequestInformation">
+<span class="sig-name descname"><span class="pre">RequestInformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outInfo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvVtkReader.RequestInformation" title="Link to this definition"></a></dt>
+<dd><p>Overwritten by subclass to provide meta-data to downstream
+pipeline.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytools.vlsvfile.</span></span><span class="sig-name descname"><span class="pre">VlsvWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_meshes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter" title="Link to this definition"></a></dt>
+<dd><p>Class for reading VLSV files</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter.clone_file">
+<span class="sig-name descname"><span class="pre">clone_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter.clone_file" title="Link to this definition"></a></dt>
+<dd><p>Simply copies overs the file in vlsvReader to a fresh new file
+:param vlsvReader:    Some open vlsv file 
+:param dst:     Name of output file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter.copy_variables">
+<span class="sig-name descname"><span class="pre">copy_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter.copy_variables" title="Link to this definition"></a></dt>
+<dd><p>Copies variables from vlsv reader to the file.
+varlist = None: list of variables to copy; if no
+varlist is provided, copy all variables (default)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter.copy_variables_list">
+<span class="sig-name descname"><span class="pre">copy_variables_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter.copy_variables_list" title="Link to this definition"></a></dt>
+<dd><p>Copies variables in the list vars from vlsv reader to the file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_attribs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter.write" title="Link to this definition"></a></dt>
+<dd><p>Writes an array into the vlsv file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Name of the data array</p></li>
+<li><p><strong>tag</strong> – Tag of the data array.</p></li>
+<li><p><strong>mesh</strong> – Mesh for the data array</p></li>
+<li><p><strong>extra_attribs</strong> – Dictionary with whatever xml attributes that should be defined in the array that aren’t name, tag, or mesh</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the data was written successfully</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter.write_variable">
+<span class="sig-name descname"><span class="pre">write_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latexunits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unitConversion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_attribs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter.write_variable" title="Link to this definition"></a></dt>
+<dd><p>Writes an array into the vlsv file as a variable; requires input of metadata required by VlsvReader
+:param data: The variable data (array)
+:param name: Name of the data array
+:param mesh: Mesh for the data array
+:param latex: LaTeX string representation of the variable name
+:param units: plaintext string representation of the unit
+:param latexunits: LaTeX string representation of the unit
+:param unitConversion: string representation of the unit conversion to get to SI
+:param extra_attribs: Dictionary with whatever xml attributes that should be defined in the array that aren’t name, tag, or mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the data was written successfully</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter.write_variable_info">
+<span class="sig-name descname"><span class="pre">write_variable_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varinfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unitConversion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_attribs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter.write_variable_info" title="Link to this definition"></a></dt>
+<dd><p>Writes an array into the vlsv file as a variable; requires input of metadata required by VlsvReader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>varinfo</strong> – VariableInfo object containing
+-data: The variable data (array)
+-name: Name of the data array
+-latex: LaTeX string representation of the variable name
+-units: plaintext string representation of the unit
+-latexunits: LaTeX string representation of the unit</p></li>
+<li><p><strong>mesh</strong> – Mesh for the data array</p></li>
+<li><p><strong>unitConversion</strong> – string representation of the unit conversion to get to SI</p></li>
+<li><p><strong>extra_attribs</strong> – Dictionary with whatever xml attributes that should be defined in the array that aren’t name, tag, or mesh,
+or contained in varinfo. Can be used to overwrite varinfo values besids name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the data was written successfully</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.vlsvfile.VlsvWriter.write_velocity_space">
+<span class="sig-name descname"><span class="pre">write_velocity_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocks_and_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.vlsvfile.VlsvWriter.write_velocity_space" title="Link to this definition"></a></dt>
+<dd><p>Writes given velocity space into vlsv file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> – Some open vlsv reader file with velocity space in the given cell id</p></li>
+<li><p><strong>cellid</strong> – Given cellid</p></li>
+<li><p><strong>blocks_and_values</strong> – Blocks and values in list format e.g. [[block1,block2,..], [block1_values, block2_values,..]] where block1_values are velocity block values (list length 64)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../calculations/" class="btn btn-neutral float-left" title="calculations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../miscellaneous/" class="btn btn-neutral float-right" title="miscellaneous" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, University of Helsinki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

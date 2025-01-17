@@ -1,0 +1,179 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>shue &mdash; analysator  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="tsyganenko" href="../tsyganenko/" />
+    <link rel="prev" title="magnetopause3d" href="../magnetopause3d/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            analysator
+              <img src="../_static/logo_color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plot/">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculations/">calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vlsvfile/">vlsvfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/">miscellaneous</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../scripts/">scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#biot-savart">biot_savart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#gics">gics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#magnetopause2d">magnetopause2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#magnetopause3d">magnetopause3d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#shue">shue</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../scripts/#tsyganenko">tsyganenko</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../biot_savart/">biot_savart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gics/">gics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause2d/">magnetopause2d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause3d/">magnetopause3d</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">shue</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#shue.f_shue"><code class="docutils literal notranslate"><span class="pre">f_shue()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tsyganenko/">tsyganenko</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about/">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">analysator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../scripts/">scripts</a></li>
+      <li class="breadcrumb-item active">shue</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/shue.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-shue">
+<span id="shue"></span><h1>shue<a class="headerlink" href="#module-shue" title="Link to this heading"></a></h1>
+<blockquote>
+<div><p>See Shue et al. (1997): “A new functional form to study the solar wind control of the magnetopause size and shape”</p>
+<p>They describe a model where the radial magnetopause position r is treated as a function of angle wrt x-GSE axis</p>
+<blockquote>
+<div><p>r(theta) = r_0 * (2 / (1+ cos(theta)))^alpha</p>
+</div></blockquote>
+<p>r_0 is the subsolar standoff distance [in earth radii], alpha is a dimensionless parameter</p>
+<dl class="simple">
+<dt>The parameters r_0, alpha depend on the solar wind parameters:</dt><dd><p>B_z: z-component (GSE) of the magnetic field [nT]
+n_p: number density [cm^-3]
+v_sw: solar wind speed [km/sec]</p>
+</dd>
+</dl>
+<p>Different Vlasiator runs had</p>
+</div></blockquote>
+<p>Example usage (plot magnetopause for run ‘EGI’):</p>
+<blockquote>
+<div><p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>theta = np.linspace(0,np.pi / 2, 1000)
+r, r0, alpha = f_shue(theta, run=’EGI’)
+x = r*np.cos(theta)
+y = r*np.sin(theta)
+plt.plot(x,y)</p>
+</div></blockquote>
+<dl class="py function">
+<dt class="sig sig-object py" id="shue.f_shue">
+<span class="sig-prename descclassname"><span class="pre">shue.</span></span><span class="sig-name descname"><span class="pre">f_shue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_polar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_sw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shue.f_shue" title="Link to this definition"></a></dt>
+<dd><p>Shue et al. (1997): ‘A new functional form to study the solar wind control of the magnetopause size and shape’`</p>
+<dl class="simple">
+<dt>Inputs:</dt><dd><dl class="simple">
+<dt>theta_polar: 1D numpy array [radians], angle wrt x-GSE axis</dt><dd><p>0 &lt; theta_polar &lt; 2pi</p>
+</dd>
+<dt>keyword run: string containing Vlasiator run name (e.g. ‘EGI’) </dt><dd><p>If set, look up the solar wind parameters B_z, n_p, v_sw for this run</p>
+</dd>
+</dl>
+</dd>
+<dt>Output:</dt><dd><p>magnetopause position r(theta) [R_E]</p>
+</dd>
+</dl>
+<p>TODO: instead of using _f_shue_parameters(), use VlsvReader object’s get_config() method to look up parameters.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../magnetopause3d/" class="btn btn-neutral float-left" title="magnetopause3d" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tsyganenko/" class="btn btn-neutral float-right" title="tsyganenko" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, University of Helsinki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

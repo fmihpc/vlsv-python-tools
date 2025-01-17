@@ -1,0 +1,204 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>miscellaneous &mdash; analysator  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="scripts" href="../scripts/" />
+    <link rel="prev" title="vlsvfile" href="../vlsvfile/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            analysator
+              <img src="../_static/logo_color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plot/">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculations/">calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vlsvfile/">vlsvfile</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">miscellaneous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.miscellaneous.get_sorted_file_names"><code class="docutils literal notranslate"><span class="pre">get_sorted_file_names()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.miscellaneous.oblique_shock"><code class="docutils literal notranslate"><span class="pre">oblique_shock()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.miscellaneous.plot_rankine"><code class="docutils literal notranslate"><span class="pre">plot_rankine()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.miscellaneous.write_vtk_file"><code class="docutils literal notranslate"><span class="pre">write_vtk_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">analysator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">miscellaneous</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/miscellaneous.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pytools.miscellaneous">
+<span id="miscellaneous"></span><h1>miscellaneous<a class="headerlink" href="#module-pytools.miscellaneous" title="Link to this heading"></a></h1>
+<p>This file module includes all the relevant functions/classes from the misc folder
+Miscellaneous functions include functions which dont fit any other category</p>
+<p># List of functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span>
+<span class="n">pt</span><span class="o">.</span><span class="n">miscellaneous</span><span class="o">.</span>
+<span class="c1">#press tab -&gt; get the functions</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.miscellaneous.get_sorted_file_names">
+<span class="sig-prename descclassname"><span class="pre">pytools.miscellaneous.</span></span><span class="sig-name descname"><span class="pre">get_sorted_file_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'*.vlsv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.miscellaneous.get_sorted_file_names" title="Link to this definition"></a></dt>
+<dd><p>Gets the file names in the current directory and sorts them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Name of the file(s), for example <cite>“*.vlsv”</cite></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of file names in sorted order</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.miscellaneous.oblique_shock">
+<span class="sig-prename descclassname"><span class="pre">pytools.miscellaneous.</span></span><span class="sig-name descname"><span class="pre">oblique_shock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Vx1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vy1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Bx1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">By1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.miscellaneous.oblique_shock" title="Link to this definition"></a></dt>
+<dd><p>Calculates the rankine hugoniot jump conditions on the other side of the shock for given parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Vx1</strong> – Velocity component parallel to the shock normal vector on one side of the shock</p></li>
+<li><p><strong>Vy1</strong> – Velocity component perpendicular to the shock normal vector on one side of the shock</p></li>
+<li><p><strong>Bx1</strong> – Magnetic field component parallel to the shock normal vector on one side of the shock</p></li>
+<li><p><strong>By1</strong> – Magnetic field component perpendicular to the shock normal vector on one side of the shock</p></li>
+<li><p><strong>T1</strong> – Temperature on one side of the shock</p></li>
+<li><p><strong>rho1</strong> – Density on one side of the shock</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Components on the other side plus pressure P2 and compression ratio X in format [Vx2, Vy2, Bx2, By2, T2, rho2, P2, X]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.miscellaneous.plot_rankine">
+<span class="sig-prename descclassname"><span class="pre">pytools.miscellaneous.</span></span><span class="sig-name descname"><span class="pre">plot_rankine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.miscellaneous.plot_rankine" title="Link to this definition"></a></dt>
+<dd><p>A function that plots the theoretical rankine-hugoniot jump condition variables for two given points along with the actual values from a given vlsv file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> – Some open vlsv reader file</p></li>
+<li><p><strong>point1</strong> – The first point of interest along the bow-shock</p></li>
+<li><p><strong>point2</strong> – The second point of interest along the bow-shock</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>matplotlib figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.miscellaneous.write_vtk_file">
+<span class="sig-prename descclassname"><span class="pre">pytools.miscellaneous.</span></span><span class="sig-name descname"><span class="pre">write_vtk_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.miscellaneous.write_vtk_file" title="Link to this definition"></a></dt>
+<dd><p>Writes a line into a VTK file with given points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the file e.g. “test.vtk”</p></li>
+<li><p><strong>points</strong> – Points in a line in array format</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;test.vtk&quot;</span>
+<span class="n">point_data</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mf">4.</span><span class="p">]]</span>
+<span class="n">pt</span><span class="o">.</span><span class="n">miscellaneous</span><span class="o">.</span><span class="n">write_vtk_file</span><span class="p">(</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">point_data</span><span class="o">=</span><span class="n">point_data</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../vlsvfile/" class="btn btn-neutral float-left" title="vlsvfile" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../scripts/" class="btn btn-neutral float-right" title="scripts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, University of Helsinki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

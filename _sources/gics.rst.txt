@@ -1,0 +1,5 @@
+gics
+----
+
+.. automodule:: gics
+	:members:

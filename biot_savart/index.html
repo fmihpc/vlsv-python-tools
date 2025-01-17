@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biot_savart &mdash; analysator  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="gics" href="../gics/" />
+    <link rel="prev" title="scripts" href="../scripts/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            analysator
+              <img src="../_static/logo_color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plot/">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculations/">calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vlsvfile/">vlsvfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/">miscellaneous</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../scripts/">scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#biot-savart">biot_savart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#gics">gics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#magnetopause2d">magnetopause2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#magnetopause3d">magnetopause3d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#shue">shue</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../scripts/#tsyganenko">tsyganenko</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">biot_savart</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.B_ionosphere"><code class="docutils literal notranslate"><span class="pre">B_ionosphere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.B_magnetosphere"><code class="docutils literal notranslate"><span class="pre">B_magnetosphere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.b_dip"><code class="docutils literal notranslate"><span class="pre">b_dip()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.b_dip_direction"><code class="docutils literal notranslate"><span class="pre">b_dip_direction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.b_dip_magnitude"><code class="docutils literal notranslate"><span class="pre">b_dip_magnitude()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.biot_savart"><code class="docutils literal notranslate"><span class="pre">biot_savart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.cartesian_to_spherical"><code class="docutils literal notranslate"><span class="pre">cartesian_to_spherical()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.fac_map"><code class="docutils literal notranslate"><span class="pre">fac_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.graded_mesh"><code class="docutils literal notranslate"><span class="pre">graded_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.integrate_biot_savart"><code class="docutils literal notranslate"><span class="pre">integrate_biot_savart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.mkdir_path"><code class="docutils literal notranslate"><span class="pre">mkdir_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.nearest_node_index"><code class="docutils literal notranslate"><span class="pre">nearest_node_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.refine_mesh"><code class="docutils literal notranslate"><span class="pre">refine_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.save_B_vlsv"><code class="docutils literal notranslate"><span class="pre">save_B_vlsv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">spherical_to_cartesian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.vec_len_2d"><code class="docutils literal notranslate"><span class="pre">vec_len_2d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biot_savart.vec_unit"><code class="docutils literal notranslate"><span class="pre">vec_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../gics/">gics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause2d/">magnetopause2d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause3d/">magnetopause3d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../shue/">shue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tsyganenko/">tsyganenko</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about/">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">analysator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../scripts/">scripts</a></li>
+      <li class="breadcrumb-item active">biot_savart</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/biot_savart.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-biot_savart">
+<span id="biot-savart"></span><h1>biot_savart<a class="headerlink" href="#module-biot_savart" title="Link to this heading"></a></h1>
+<blockquote>
+<div><p>Follow Welling et al. (2020) calculate the magnetic field at Earth’s surface.</p>
+</div></blockquote>
+<p>Integrate Biot-Savart over:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>All currents within the Vlasov domain</p></li>
+<li><p>Birkeland currents (FACs) in the “gap region” between the MHD inner boundary and the ionosphere, mapped (assuming J propto B) along the field lines connecting ionosphere radius R_IONO to coupling radius r_C</p></li>
+<li><p>Horizontal Ionospheric currents (altitude 100 km)</p></li>
+</ol>
+</div></blockquote>
+<p>The integration is a discrete summation over the 3 domains.</p>
+<p>Integrating the domain #2 will likely require this mesh to be ‘refined’ in order to resolve the FAC structures
+see the functions refine_mesh() and graded_mesh()</p>
+<p>This script has been tested with the Vlasiator runs EGL, FHA, FIA
+note that the usefulness for EGL is limited because there is no ionosphere (domain #3) for that run</p>
+<p>To run this script, require access to the data reducer/variable ‘vg_J’ in the .vlsv  file
+This may be supplied by a .vlsv file’s vlsvReader object, see keyword f_J_sidecar</p>
+<p>This script is written for the UH environment. Adapt file paths as needed.</p>
+<p>###</p>
+<p>EXAMPLE CALL (1 thread):
+python biot_savart.py -nproc 1 -task 1 -run FHA</p>
+<dl class="simple">
+<dt>Example sidecar .vlsv files,  containing ground magnetic field data, can be found at:</dt><dd><p>/wrk-vakka/group/spacephysics/vlasiator/3D/{run name}/sidecars/ig_B/</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.B_ionosphere">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">B_ionosphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ig_r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'integrate'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.B_ionosphere" title="Link to this definition"></a></dt>
+<dd><p>Ionospheric (domain #3) current contribution to magnetic field</p>
+<p>B_ionosphere() evaluates the magnetic field produced by ionospheric currents</p>
+<dl>
+<dt>Inputs:</dt><dd><p>f: VlsvReader object</p>
+<p>keyword coord_list: locations where B-field is calculated</p>
+<p>keyword ig_r: the ionospheric mesh</p>
+<p>keyword method:</p>
+<blockquote>
+<div><p>=’integrate’ (default): integrate over the whole ionosphere using Biot-Savart law</p>
+<p>=’local’: ionosphere produces magnetic field locally, as by an infinite plane of current overhead</p>
+</div></blockquote>
+</dd>
+<dt>Outputs:</dt><dd><p>Magnetic field evaluated at coord_list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.B_magnetosphere">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">B_magnetosphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_J_sidecar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">31855000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ig_r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.B_magnetosphere" title="Link to this definition"></a></dt>
+<dd><p>Inner and outer magnetospheric contributions to Biot-Savart integral (domains #1, #2)
+wrapper for biot_savart()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.b_dip">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">b_dip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag_mom_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.e+00,</span> <span class="pre">0.e+00,</span> <span class="pre">-8.e+22])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.b_dip" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Inputs: cartesian coordinates x,y,z [m]</dt><dd><p>keyword mag_mom_vector: Earth’s vector magnetic dipole moment</p>
+</dd>
+</dl>
+<p>Outputs: dipole magnetic field</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.b_dip_direction">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">b_dip_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag_mom_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.e+00,</span> <span class="pre">0.e+00,</span> <span class="pre">-8.e+22])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.b_dip_direction" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Inputs: cartesian coordinates x,y,z [m]</dt><dd><p>keyword mag_mom_vector: Earth’s vector magnetic dipole moment</p>
+</dd>
+</dl>
+<p>Outputs: dipole magnetic field unit vector</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.b_dip_magnitude">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">b_dip_magnitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag_mom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8e+22</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.b_dip_magnitude" title="Link to this definition"></a></dt>
+<dd><p>Inputs:
+theta: colatitude [radians]
+r: radial distance [m]
+keyword mag_mom: magnetic dipole moment, default=8e22 [A / m^2], as in EGI, EGL, FIA, FHA runs</p>
+<p>Outputs: Earth’s magnetic field magnitude [Tesla]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.biot_savart">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">biot_savart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_J_sidecar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">31855000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'graded'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.biot_savart" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>param coord_list:   a list of 3-element arrays of coordinates [ [x1,y1,z1], [x2,y2,z2], … ], SI units</dt><dd><p>if considering just a single starting point, the code accepts a 3-element array-like object [x1,y1,z1]</p>
+</dd>
+</dl>
+<p>f: vlsvReader object
+f_J_sidecar: vlsvReader object that contains pre-computed current ‘vg_J’</p>
+<blockquote>
+<div><p>e.g., for EGL, files at: /wrk-vakka/group/spacephysics/vlasiator/3D/EGL/visualizations_2/ballooning/*.vlsv</p>
+</div></blockquote>
+<p>runtime (FHA): overhead of about 200 sec (setup), plus 0.2 sec for each element of coord_list</p>
+<p>returns a tuple (B_inner, B_outer) 
+B_inner: the B-field [T] generated by FACs at 1 R_E &lt; r&lt; r_C
+B_outer: the B-field [T] generated by currents in simulation domain at r &gt; r_C</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.cartesian_to_spherical">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_spherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.cartesian_to_spherical" title="Link to this definition"></a></dt>
+<dd><p>r &gt; 0
+0 &lt; theta &lt; pi
+-pi &lt; phi &lt; pi
+all are assumed to be numpy arrays of equal dimensions</p>
+<p>returns:  r, theta, phi  [tuple]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.fac_map">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">fac_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vg_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vg_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vg_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_J_sidecar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">31855000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag_mom_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.e+00,</span> <span class="pre">0.e+00,</span> <span class="pre">-8.e+22])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.fac_map" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Map the FACs along magnetic field lines (J propto B).</p>
+<dl>
+<dt>Inputs:</dt><dd><p>f: VlsvReader object
+f_J_sidecar: vlsvReader object that contains pre-computed current ‘vg_J’</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">f_J_sidecar</span> <span class="pre">=</span> <span class="pre">None:</span></code></dt><dd><p>here is assumed the data reducer ‘ig_fac’ exists (such as for runs FHA and FIA)
+In this case, the currents in the FAC region (domain #2) will be mapped UP from the ionosphere ‘ig_’ grid</p>
+</dd>
+<dt>otherwise (f_J_sidecar = a *.vlsv string, for a file containing the current density J in the vlasov ‘vg_’ grid)</dt><dd><p>for run EGL, see files at /wrk-vakka/group/spacephysics/vlasiator/3D/EGL/visualizations_2/ballooning/*.vlsv
+In this case, the currents in the FAC region (domain #2) will be mapped DOWN from the vg_ grid</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>vg_x,vg_y,vg_z position [m], 1D numpy arrays. </dt><dd><p>note: these coordinates do not have to correspond with Vlasiator’s vg_ grid,
+This is relevant when fac_map() is called by biot_savart(), with keyword mesh=’refined’ or mesh=’graded’</p>
+</dd>
+</dl>
+<p>dx is grid resolution [m], 1D numpy array, This is for the input cells which can be defined arbitrarily—not necessarily same as vg cells.</p>
+</dd>
+</dl>
+<p><strong>*  coordinates, not just coordinates on the vg_ grid *</strong></p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>the vector current density [A/m^2] at specified positions vg_x, vg_y, vg_z position
+output J=0 for cells that fall outside the FAC region (i.e if cell is not in region R_EARTH+dx/2 &lt; r&lt; r_C)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.graded_mesh">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">graded_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([8,</span> <span class="pre">4,</span> <span class="pre">2])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([6371000.,</span> <span class="pre">12742000.,</span> <span class="pre">25484000.])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.graded_mesh" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Iteratively refine the mesh in ‘inner’ FAC region  R_IONO &lt; r &lt; r_C,
+used to calculate FAC contribution to Biot-Savart integral</p>
+</div></blockquote>
+<p>Calls refine mesh with different refinement factors n, at specified refinement boundaries
+ns: numpy array of refinement factors (ints)
+Rs: numpy array of refinement boundary radii [R_E]
+edge case: arrays are aligned so that for r&gt;Rs[-1], use ns[-1] refinement</p>
+<p>Want the refinement level to roughly scale as r^{-3/2}. To resolve the mapped features at all radii
+This works because magnetic dipole field goes as 1/r^3, roughly, and area A goes as r^2. 
+(Need to set areas of the cell faces so B*A~constant, to resolve features mapped along field lines)</p>
+<dl class="simple">
+<dt>Example: graded_mesh(x, y, z, dV, ns = np.array([8, 4, 2]), Rs = np.array([R_EARTH, R_EARTH*2, R_EARTH*4]))</dt><dd><p>–&gt; refines 1D mesh size by factor of 8 for 1 RE&lt;r&lt;=2 RE, by factor of 4 for 2 RE&lt;r&lt;=4 RE, by factor of 2 for r&gt;4 RE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.integrate_biot_savart">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">integrate_biot_savart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.integrate_biot_savart" title="Link to this definition"></a></dt>
+<dd><p>integration of the Biot-savart law
+magnetic field is evaluated at coordinates specified in coord_list (for example, the ionospheric coordinates)</p>
+<dl>
+<dt>Inputs:</dt><dd><blockquote>
+<div><p>x,y,z (1D array, size n): Cartesian coordinates
+delta (1D array, size n): the volume or area of the element being integrated
+J (2D array, size [3, n]): current density</p>
+</div></blockquote>
+<p>all units SI</p>
+</dd>
+<dt>Outputs:</dt><dd><p>magnetic field evaluated at coord_list</p>
+</dd>
+</dl>
+<p>Note: the units of J and delta depend on the type of integral (volume or surface), but the equation form is unchanged</p>
+<dl class="simple">
+<dt>Biot-Savart (volume): B = (mu_0 / 4 * pi) int { J x r’ / |r’|^3 } dV  ([J] = A/m^2, delta == dV)</dt><dd><p>(surface): B = (mu_0 / 4 * pi) int { J x r’ / |r’|^3 } dA  ([J] = A/m, delta = dS)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.mkdir_path">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">mkdir_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.mkdir_path" title="Link to this definition"></a></dt>
+<dd><p>Make a directory from the stem of an input file name (path)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.nearest_node_index">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">nearest_node_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_coords_iono</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.nearest_node_index" title="Link to this definition"></a></dt>
+<dd><p>helper function for finding nearest ionospheric node</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.refine_mesh">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">refine_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.refine_mesh" title="Link to this definition"></a></dt>
+<dd><p>refine the mesh in ‘inner’ FAC region  R_IONO &lt; r &lt; r_C,
+used to calculate FAC contribution to Biot-Savart integral</p>
+<p>x, y, z: initial coordinates (1D numpy float arrays), assumed to be at the center of cubic cell
+dV: cell volume 1D array or scalar value
+dx_0: side length of initial mesh (1D numpy array or single scalar value)
+n (int): the factor by which to refine the mesh</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.save_B_vlsv">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">save_B_vlsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.save_B_vlsv" title="Link to this definition"></a></dt>
+<dd><p>calculate magnetic field at the Earth’s surface and save in a .vslv file</p>
+<dl>
+<dt>Inputs: input tuple</dt><dd><p>input_tuple[0]: run (string)  # ‘EGL’, ‘FHA’, or ‘FIA’
+input_tuple[1]: fileIndex (int)</p>
+</dd>
+<dt>Outputs:</dt><dd><dl class="simple">
+<dt>ig_r: Cartesian ionospheric grid locations (radius R_EARTH + 100km)</dt><dd><p>note that B_iono, B_inner, B_outer are in fact evaluated at radius R_EARTH
+ig_r is a copy of the Vlasiator ionosphere mesh, to enable combination with other data reducers</p>
+</dd>
+</dl>
+<p>B_iono: Ionospheric (Domain #3) contribution to ground magnetic field (radius R_EARTH)
+B_inner: Ionospheric (Domain #2) contribution to ground magnetic field (radius R_EARTH)
+B_outer: Ionospheric (Domain #1) contribution to ground magnetic field (radius R_EARTH)</p>
+</dd>
+</dl>
+<p>Note: the input and output .vlsv file paths may need to be modified in this script for different users</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.spherical_to_cartesian">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">spherical_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.spherical_to_cartesian" title="Link to this definition"></a></dt>
+<dd><p>r &gt; 0
+0 &lt; theta &lt; pi
+-pi &lt; phi &lt; pi
+all are assumed to be numpy arrays of equal dimensions</p>
+<p>returns:  x, y, z   [tuple]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.vec_len_2d">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">vec_len_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr_2d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.vec_len_2d" title="Link to this definition"></a></dt>
+<dd><p>Vector length</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biot_savart.vec_unit">
+<span class="sig-prename descclassname"><span class="pre">biot_savart.</span></span><span class="sig-name descname"><span class="pre">vec_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr_2d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biot_savart.vec_unit" title="Link to this definition"></a></dt>
+<dd><p>assume arr_2d is a numpy array with shape [N, 3]. Return unit vectors with same shape</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../scripts/" class="btn btn-neutral float-left" title="scripts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gics/" class="btn btn-neutral float-right" title="gics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, University of Helsinki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

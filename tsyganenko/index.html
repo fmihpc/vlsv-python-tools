@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tsyganenko &mdash; analysator  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Credits" href="../about/" />
+    <link rel="prev" title="shue" href="../shue/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            analysator
+              <img src="../_static/logo_color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plot/">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculations/">calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vlsvfile/">vlsvfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/">miscellaneous</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../scripts/">scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#biot-savart">biot_savart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#gics">gics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#magnetopause2d">magnetopause2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#magnetopause3d">magnetopause3d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/#shue">shue</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../scripts/#tsyganenko">tsyganenko</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../biot_savart/">biot_savart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gics/">gics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause2d/">magnetopause2d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../magnetopause3d/">magnetopause3d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../shue/">shue</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tsyganenko</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tsyganenko.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">spherical_to_cartesian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tsyganenko.tsyganenko_b"><code class="docutils literal notranslate"><span class="pre">tsyganenko_b()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tsyganenko.tsyganenko_ocb"><code class="docutils literal notranslate"><span class="pre">tsyganenko_ocb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tsyganenko.tsyganenko_open"><code class="docutils literal notranslate"><span class="pre">tsyganenko_open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tsyganenko.tsyganenko_trace"><code class="docutils literal notranslate"><span class="pre">tsyganenko_trace()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about/">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">analysator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../scripts/">scripts</a></li>
+      <li class="breadcrumb-item active">tsyganenko</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tsyganenko.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tsyganenko">
+<span id="tsyganenko"></span><h1>tsyganenko<a class="headerlink" href="#module-tsyganenko" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="tsyganenko.spherical_to_cartesian">
+<span class="sig-prename descclassname"><span class="pre">tsyganenko.</span></span><span class="sig-name descname"><span class="pre">spherical_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsyganenko.spherical_to_cartesian" title="Link to this definition"></a></dt>
+<dd><p>r &gt; 0
+0 &lt; theta &lt; pi
+-pi &lt; phi &lt; pi
+all are assumed to be numpy arrays of equal dimensions</p>
+<p>returns:  x, y, z   [tuple]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tsyganenko.tsyganenko_b">
+<span class="sig-prename descclassname"><span class="pre">tsyganenko.</span></span><span class="sig-name descname"><span class="pre">tsyganenko_b</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Txx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'t01'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">InternalB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dipole'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Dst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx_sw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-750.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_sw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Bx_imf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">By_imf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Bz_imf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-5.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsyganenko.tsyganenko_b" title="Link to this definition"></a></dt>
+<dd><p>Wrapper for Geopack’s trace() routine, for tracing field lines along Tsyganenko model</p>
+<dl>
+<dt>Inputs:</dt><dd><p>x0: x-coordinate(s) (GSE) to evaluate the field [R_E]  (float)
+y0: y-coordinate(s) (GSE) to evaluate the field [R_E]  (float)
+z0: z-coordinate(s) (GSE) to evaluate the field [R_E]  (float)</p>
+<p>–Keywords–</p>
+<dl class="simple">
+<dt>Txx: (external) field model, by Tsyganenko publication year. options: ‘t89’, ‘t96’, ‘t01’</dt><dd><p>Need to test: does ‘t04’ work? Is geomagnetic activity estimated with Kp or Dst in that case?</p>
+</dd>
+</dl>
+<p>InternalB: internal model. options: ‘dipole’, ‘igrf’
+Dst: Dst index in nT (geomagnetic activity), used for Txx= ‘t96’, ‘t01’ (‘t04’?)
+Kp: Kp index 0-9 (geomagnetic activity), used for Txx=’T89’
+Vx_sw: solar wind x-component of velocity [km/s] (GSE), other components assumed zero
+N_sw: solar wind density [cm-3]
+Bx_imf: driving solar wind imf Bx [nT] (GSE)
+By_imf: driving solar wind GSE imf By [nT] (GSE)
+Bz_imf: driving solar wind GSE imf Bz [nT] (GSE)
+R_inner: inner radius [R_E] of the tracing, if the tracing goes r&lt;R_inner it stops
+R_outer: outer radius [R_E] of the tracing, if the tracing goes r&gt;R_outer it stops</p>
+<dl>
+<dt>dir: direction of the tracing relative to the magnetic field direction (parallel: dir= 1, anti-parallel: dir= -1)</dt><dd><p>If unspecified (dir=None), dir traces against the field when z0&gt;0 with the field when z0&lt;0</p>
+<dl class="simple">
+<dt>*** this is the opposite convention used by geopack’s trace() function?</dt><dd><p>From geopack.py docs: “dir: Direction of tracing. dir = -1 for parallel; dir = 1 for anti-parallel.”</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>3-element tuple bx,by,bz
+bx: x-component(s) of field [nT]
+by: y-component(s) of field [nT]
+bz: z-component(s) of field [nT]</p>
+<p>** All positional inputs can either be single values or numpy arrays (or lists) **
+** Depending on the inputs, the outputs bx, by, bz will either be single numbers or numpy arrays **
+** All inputs and outputs are in GSE coordinate system **</p>
+</dd>
+<dt>Example:</dt><dd><p>bx,by,bz = tsyganenko_b(0,0, 1., Txx = ‘t01’, Dst = -80, Kp = 4, Vx_sw = -750., N_sw = 4., Bx_imf = 0., By_imf = 0., Bz_imf = -10. )</p>
+<p>bx,by,bz = tsyganenko_b([0,0,0],[0,0,0], [1.,2,3], Txx = ‘t01’, Dst = -80, Kp = 4, Vx_sw = -750., N_sw = 4., Bx_imf = 0., By_imf = 0., Bz_imf = -10. )</p>
+</dd>
+</dl>
+<p>Notes:</p>
+<blockquote>
+<div><p>Earth’s dipole is assumed to point (~exactly) in the -z GSE direction</p>
+<p>Default solar wind and IMF parameters are for the EGI Vlasiator run, see Grandin et al. (2022?)</p>
+<blockquote>
+<div><p>Other runs:</p>
+<dl class="simple">
+<dt>EGL (note: pulse arrives at magnetopause at roughly t=857 sec)</dt><dd><p>(~before pulse arrival): Dst = -30 (Grandin et al. 2022), N_sw = 1, Bz_imf = -5
+(~after pulse arrival):  Dst = -80 (Horaites et al.), N_sw = 4, Bz_imf = -10</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>The geopack package doesn’t allow for easy specification of the dipole tilt angle.
+Rather, a UT was found when the tilt was nearly zero (see gp.recalc() line below)
+The specified UT results in a tilt angle of theta~1e-5 radians, or 6e-4 degrees
+Technically, the solutions should be rotated back by theta, to be compared with Vlasiator’s zero-tilt runs
+But this small theta is within tolerance for most applications.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tsyganenko.tsyganenko_ocb">
+<span class="sig-prename descclassname"><span class="pre">tsyganenko.</span></span><span class="sig-name descname"><span class="pre">tsyganenko_ocb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">90]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsyganenko.tsyganenko_ocb" title="Link to this definition"></a></dt>
+<dd><p>Find the open/closed field line boundary (OCB)
+algorithm uses a binary search within a specified latitude range</p>
+<dl>
+<dt>Inputs:</dt><dd><p>phi: ~longitude, in degrees                                                     -180&lt;=phi&lt;=180
+lat_range: 2-element list or numpy array,</p>
+<blockquote>
+<div><p>containing min. and max. latidues [degrees] to search within         -90&lt;=lat&lt;=90</p>
+</div></blockquote>
+<p>kwargs are passed to tsyanenko_open()</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<blockquote>
+<div><p>Estimate of the OCB latitude at the given phi, in degrees</p>
+</div></blockquote>
+<dl>
+<dt>Notes:</dt><dd><p>Algorithm assumes OBC latitude is a single-valued function of phi</p>
+<p>Theoretical accuracy of the OCB determination is ~ (lat_range[1]-lat_range[0]) / 2^nsteps</p>
+</dd>
+</dl>
+<p>Example:   # dayside (noon) cusp</p>
+<blockquote>
+<div><dl class="simple">
+<dt>tsyganenko_ocb(0, lat_range = [60,80], nsteps = 10, </dt><dd><p>Txx = ‘t01’, Dst = -80, Kp = 4, Vx_sw = -750., N_sw = 4., Bx_imf = 0., By_imf = 0., Bz_imf = -10., 
+R_inner = 1., R_outer=15., dir = None, maxloop = 10000)</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tsyganenko.tsyganenko_open">
+<span class="sig-prename descclassname"><span class="pre">tsyganenko.</span></span><span class="sig-name descname"><span class="pre">tsyganenko_open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_inner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_outer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsyganenko.tsyganenko_open" title="Link to this definition"></a></dt>
+<dd><p>Checks whether the field line starting at radius ~R_inner
+will trace out to beyond R_outer. R_outer is chosen to be large, so if 
+a magnetic field line makes it out this far, it may be assumed to be open
+If the tracing crosses R_inner, the field line is closed</p>
+<dl>
+<dt>Inputs: </dt><dd><p>phi: ~longitude, in degrees                    -180&lt;=phi&lt;=180
+lat: geographic latitude, in degrees           -90&lt;=lat&lt;=90</p>
+<blockquote>
+<div><dl class="simple">
+<dt>e.g.,</dt><dd><p>(phi=0, lat = 0) corresponds with subsolar point
+(phi=anything, lat = 90) corresponds with geographic north pole</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>R_inner: inner radius [R_E] of the tracing, if the tracing goes r&lt;R_inner it stops
+R_outer: outer radius [R_E] of the tracing, if the tracing goes r&gt;R_outer it stops</p>
+<p>Keywords (and kwargs) all get passed to tsyganenko_trace()</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Boolean—</dt><dd><p>True (if open)
+False (if closed)</p>
+</dd>
+</dl>
+</dd>
+<dt>Example: </dt><dd><p>tsyganenko_open(0, 45)   # returns False
+tsyganenko_open(0, 80)   # returns True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tsyganenko.tsyganenko_trace">
+<span class="sig-prename descclassname"><span class="pre">tsyganenko.</span></span><span class="sig-name descname"><span class="pre">tsyganenko_trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Txx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'t01'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">InternalB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dipole'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Dst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vx_sw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-750.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_sw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Bx_imf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">By_imf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Bz_imf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_inner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_outer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxloop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsyganenko.tsyganenko_trace" title="Link to this definition"></a></dt>
+<dd><p>Wrapper for Geopack’s trace() routine, for tracing field lines along Tsyganenko model</p>
+<dl>
+<dt>Inputs:</dt><dd><p>x0: initial x-coordinate (GSE) of field tracing [R_E]  (float)
+y0: initial y-coordinate (GSE) of field tracing [R_E]  (float)
+z0: initial z-coordinate (GSE) of field tracing [R_E]  (float)</p>
+<p>–Keywords–</p>
+<dl class="simple">
+<dt>Txx:</dt><dd><dl class="simple">
+<dt>(external) field model, by Tsyganenko publication year. options: ‘t89’, ‘t96’, ‘t01’</dt><dd><p>Need to test: does ‘t04’ work? Is geomagnetic activity estimated with Kp or Dst in that case?</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>InternalB: internal model. options: ‘dipole’, ‘igrf’
+Dst: Dst index in nT (geomagnetic activity), used for Txx= ‘t96’, ‘t01’ (‘t04’?)
+Kp: Kp index 0-9 (geomagnetic activity), used for Txx=’T89’
+Vx_sw: solar wind x-component of velocity [km/s] (GSE), other components assumed zero
+N_sw: solar wind density [cm-3]
+Bx_imf: driving solar wind imf Bx [nT] (GSE)
+By_imf: driving solar wind GSE imf By [nT] (GSE)
+Bz_imf: driving solar wind GSE imf Bz [nT] (GSE)
+R_inner: inner radius [R_E] of the tracing, if the tracing goes r&lt;R_inner it stops
+R_outer: outer radius [R_E] of the tracing, if the tracing goes r&gt;R_outer it stops</p>
+<dl>
+<dt>dir: direction of the tracing relative to the magnetic field direction (parallel: dir= 1, anti-parallel: dir= -1)</dt><dd><p>If unspecified (dir=None), dir traces against the field when z0&gt;0 with the field when z0&lt;0</p>
+<dl class="simple">
+<dt>*** this is the opposite convention used by geopack’s trace() function?</dt><dd><p>From geopack.py docs: “dir: Direction of tracing. dir = -1 for parallel; dir = 1 for anti-parallel.”</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>6-element tuple x,y,z,xx,yy,zz
+x: final x-coordinate(s) of field tracing [R_E]
+y: final y-coordinate(s) of field tracing [R_E]
+z: final z-coordinate(s) of field tracing [R_E]
+xx: numpy array containing the traced field line x-coordinates 
+yy: numpy array containing the traced field line y-coordinates 
+zz: numpy array containing the traced field line z-coordinates</p>
+<p>** All inputs and outputs are in GSE coordinate system **</p>
+</dd>
+<dt>Example:</dt><dd><p>x,y,z,xx,yy,zz = tsyganenko_trace(0,0, 1., Txx = ‘t01’, Dst = -80, Kp = 4, Vx_sw = -750., N_sw = 4., Bx_imf = 0., By_imf = 0., Bz_imf = -10., R_inner = 1., R_outer=5., dir = None, maxloop = 20000 )</p>
+</dd>
+</dl>
+<p>Notes:</p>
+<blockquote>
+<div><p>Earth’s dipole is assumed to point (~exactly) in the -z GSE direction</p>
+<p>Default solar wind and IMF parameters are for the EGI Vlasiator run, see Grandin et al. (2022?)</p>
+<blockquote>
+<div><p>Other runs:</p>
+<dl class="simple">
+<dt>EGL (note: pulse arrives at magnetopause at roughly t=857 sec)</dt><dd><p>(~before pulse arrival): Dst = -30 (Grandin et al. 2022), N_sw = 1, Bz_imf = -5
+(~after pulse arrival):  Dst = -80 (Horaites et al.), N_sw = 4, Bz_imf = -10</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>The geopack package doesn’t allow for easy specification of the dipole tilt angle.
+Rather, a UT was found when the tilt was nearly zero (see gp.recalc() line below)
+The specified UT results in a tilt angle of theta~1e-5 radians, or 6e-4 degrees
+Technically, the solutions should be rotated back by theta, to be compared with Vlasiator’s zero-tilt runs
+But this small theta is within tolerance for most applications.</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../shue/" class="btn btn-neutral float-left" title="shue" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../about/" class="btn btn-neutral float-right" title="Credits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, University of Helsinki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

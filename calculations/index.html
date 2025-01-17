@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calculations &mdash; analysator  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="vlsvfile" href="../vlsvfile/" />
+    <link rel="prev" title="plot" href="../plot/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            analysator
+              <img src="../_static/logo_color.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plot/">plot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">calculations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.AMRInterpolator"><code class="docutils literal notranslate"><span class="pre">AMRInterpolator</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.LMN_null_lines_FOTE"><code class="docutils literal notranslate"><span class="pre">LMN_null_lines_FOTE()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.VariableInfo"><code class="docutils literal notranslate"><span class="pre">VariableInfo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.calculations.VariableInfo.get_scaled_units"><code class="docutils literal notranslate"><span class="pre">VariableInfo.get_scaled_units()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.calculations.VariableInfo.get_scaled_var"><code class="docutils literal notranslate"><span class="pre">VariableInfo.get_scaled_var()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytools.calculations.VariableInfo.get_variable"><code class="docutils literal notranslate"><span class="pre">VariableInfo.get_variable()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.cell_time_evolution"><code class="docutils literal notranslate"><span class="pre">cell_time_evolution()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.cut3d"><code class="docutils literal notranslate"><span class="pre">cut3d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.cut_through"><code class="docutils literal notranslate"><span class="pre">cut_through()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.cut_through_curve"><code class="docutils literal notranslate"><span class="pre">cut_through_curve()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.cut_through_step"><code class="docutils literal notranslate"><span class="pre">cut_through_step()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.dynamic_field_tracer"><code class="docutils literal notranslate"><span class="pre">dynamic_field_tracer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.epsilon_M"><code class="docutils literal notranslate"><span class="pre">epsilon_M()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.fourier"><code class="docutils literal notranslate"><span class="pre">fourier()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.gyrophase_angles_from_file"><code class="docutils literal notranslate"><span class="pre">gyrophase_angles_from_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.lineout"><code class="docutils literal notranslate"><span class="pre">lineout()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.pitch_angles"><code class="docutils literal notranslate"><span class="pre">pitch_angles()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.static_field_tracer"><code class="docutils literal notranslate"><span class="pre">static_field_tracer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.static_field_tracer_3d"><code class="docutils literal notranslate"><span class="pre">static_field_tracer_3d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.themis_observation_from_file"><code class="docutils literal notranslate"><span class="pre">themis_observation_from_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.themis_plot_detector"><code class="docutils literal notranslate"><span class="pre">themis_plot_detector()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.themis_plot_phasespace_contour"><code class="docutils literal notranslate"><span class="pre">themis_plot_phasespace_contour()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.themis_plot_phasespace_helistyle"><code class="docutils literal notranslate"><span class="pre">themis_plot_phasespace_helistyle()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.vlsv_intpol_file"><code class="docutils literal notranslate"><span class="pre">vlsv_intpol_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytools.calculations.vlsv_intpol_points"><code class="docutils literal notranslate"><span class="pre">vlsv_intpol_points()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vlsvfile/">vlsvfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/">miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">analysator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">calculations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/calculations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pytools.calculations">
+<span id="calculations"></span><h1>calculations<a class="headerlink" href="#module-pytools.calculations" title="Link to this heading"></a></h1>
+<p>This is a module that includes most, if not all, calculations within the analysator. Please type “.” and press tab to see which functions this module includes.</p>
+<p>Example:
+import pytools as pt</p>
+<p>pt.calculations.
+#press tab</p>
+<p>#Output: list of functions</p>
+<p>pt.calculations.fourier?
+#Press Enter</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytools.calculations.AMRInterpolator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">AMRInterpolator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.AMRInterpolator" title="Link to this definition"></a></dt>
+<dd><p>Wrapper class for interpolators, esp. at refinement interfaces.
+Supported methods:</p>
+<dl class="simple">
+<dt>linear</dt><dd><ul class="simple">
+<li><p>(nearly) C0 continuous, regular-grid trilinear interpolant extended to collapsed hexahedral cells.</p></li>
+<li><p>Non-parametric</p></li>
+<li><p>Exact handling of multiply-degenerate hexahedra is missing, with the enabling hack causing errors in trilinear coordinate on the order of 1m</p></li>
+</ul>
+</dd>
+<dt>Radial Basis Functions, <cite>rbf</cite></dt><dd><ul class="simple">
+<li><p>Accurate, slow-ish, but hard to make properly continuous and number of neighbors on which to base the interpolant is not trivial to find.</p></li>
+<li><p>Not continuous with regular-grid trilinear interpolants, needs to be used in the entire interpolation domain.</p></li>
+<li><p>kword options: “neighbors” for number of neighbors (64)</p></li>
+<li><p>basis function uses SciPy default. A free parameter.</p></li>
+</ul>
+</dd>
+<dt>delaunay (not recommended)</dt><dd><ul class="simple">
+<li><p>Choice of triangulation is not unique with regular grids, including refinement interfaces.</p></li>
+<li><p>kword options as in qhull; “qhull_options” : “QJ” (breaks degeneracies)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.LMN_null_lines_FOTE">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">LMN_null_lines_FOTE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">LMNs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Bs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dxs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.LMN_null_lines_FOTE" title="Link to this definition"></a></dt>
+<dd><p>Function that uses a linear approximation of B from B and its Jacobian
+in the LMN coordinates to get an approximate distance to the neutral line.
+inputs:
+* LMN basis vectors stack
+* Jacobian of B in 9-element vector stack
+* vg_b_vol</p>
+<p>return a measure for closeness to the cell center for a neutral line and other data.
+The return value is the minimum of the signed distance function between the neutral
+line</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytools.calculations.VariableInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">VariableInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latexunits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.VariableInfo" title="Link to this definition"></a></dt>
+<dd><p>A class/struct for holding variable info. This includes the variable data in array form, the name and the units.
+Variable info is in: data, name, units.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LIST</span> <span class="n">VARIABLES</span> <span class="n">IN</span> <span class="n">VARIBLE</span> <span class="n">INFO</span><span class="p">:</span>
+<span class="n">data</span>              <span class="n">Data</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span> <span class="p">(</span><span class="n">array</span> <span class="nb">list</span><span class="p">)</span>
+<span class="n">name</span>              <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span>
+<span class="n">units</span>             <span class="n">Units</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span>
+<span class="n">latex</span>             <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">LaTeX</span>
+<span class="n">latexunits</span>        <span class="n">Units</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">LaTeX</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.calculations.VariableInfo.get_scaled_units">
+<span class="sig-name descname"><span class="pre">get_scaled_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EarthSpace'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manualDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.VariableInfo.get_scaled_units" title="Link to this definition"></a></dt>
+<dd><p>Return scaling metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> – A string to choose the scaling dictionary [default: EarthSpace]</p></li>
+<li><p><strong>manualDict</strong> – a dictionary of {units : {scalingparams}}; used to update the included dictionary</p></li>
+<li><p><strong>vscale</strong> – float, factor to scale the variable with</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(norming factor, scaledUnits, scaledLatexUnits)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.calculations.VariableInfo.get_scaled_var">
+<span class="sig-name descname"><span class="pre">get_scaled_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EarthSpace'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manualDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.VariableInfo.get_scaled_var" title="Link to this definition"></a></dt>
+<dd><p>Automatically scales the variableinfo data and adjusts the units correspondingly with the
+default dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – in case you wish to provide new data array (why, though?)</p></li>
+<li><p><strong>env</strong> – A string to choose the scaling dictionary [default: EarthSpace]</p></li>
+<li><p><strong>manualDict</strong> – a dictionary of {units : {scalingparams}}; used to update the included dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>self, with scaled units with pre-formatted units included in the varinfo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytools.calculations.VariableInfo.get_variable">
+<span class="sig-name descname"><span class="pre">get_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.VariableInfo.get_variable" title="Link to this definition"></a></dt>
+<dd><p>Creates a new variable with identical data but only certain index is included</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – Vector index</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an edited version of the variable</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>E.g. if the data is an array of 3d vectors, get_variable(0) would return the variable with data[:,0] as the data</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.cell_time_evolution">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">cell_time_evolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.cell_time_evolution" title="Link to this definition"></a></dt>
+<dd><p>Returns variable data from a time evolution of some certain cell ids</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>) – List containing VlsvReaders with a file open</p></li>
+<li><p><strong>variables</strong> – Name of the variables</p></li>
+<li><p><strong>cellids</strong> – List of cell ids</p></li>
+<li><p><strong>units</strong> – List of units for the variables (OPTIONAL)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an array containing the data for the time evolution for every cell id</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span><span class="p">;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<span class="c1"># Example of usage:</span>
+<span class="n">time_data</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">calculations</span><span class="o">.</span><span class="n">cell_time_evolution</span><span class="p">(</span> <span class="n">vlsvReader_list</span><span class="o">=</span><span class="p">[</span><span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;bulk.000.vlsv&quot;</span><span class="p">),</span> <span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;bulk.001.vlsv&quot;</span><span class="p">),</span> <span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;bulk.002.vlsv&quot;</span><span class="p">)],</span> <span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;Pressure&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">cellids</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;Pascal&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="c1"># Check output</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span> <span class="n">time_data</span>
+
+<span class="c1"># Now plot the results:</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">time_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">time_data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">pt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">plot_variables</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">rho</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Do post processing:</span>
+<span class="n">rho_data</span> <span class="o">=</span> <span class="n">rho</span><span class="o">.</span><span class="n">data</span>
+<span class="n">non_existing_example_function</span><span class="p">(</span><span class="n">rho_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.cut3d">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">cut3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.cut3d" title="Link to this definition"></a></dt>
+<dd><p>Retrieves variables for the given 3d cut</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>) – Some VlsvReader with a file open</p></li>
+<li><p><strong>xmin</strong> – The minimum x coordinate of the 2d cut</p></li>
+<li><p><strong>xmax</strong> – The maximum x coordinate of the 2d cut</p></li>
+<li><p><strong>ymin</strong> – The minimum y coordinate of the 2d cut</p></li>
+<li><p><strong>ymax</strong> – The maximum y coordinate of the 2d cut</p></li>
+<li><p><strong>zmin</strong> – The minimum z coordinate of the 2d cut</p></li>
+<li><p><strong>zmax</strong> – The maximum z coordinate of the 2d cut</p></li>
+<li><p><strong>variable</strong> – Some variable to read from the vlsv file</p></li>
+<li><p><strong>operator</strong> – The variable operator</p></li>
+<li><p><strong>trim_array</strong> – If true, shapes the array into an array with minimum amount of dimensions, e.g. if the cut is zmax-zmin=0 then this will return a 2d array</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">vlsvfile</span><span class="o">.</span><span class="n">VlsvReader</span><span class="p">(</span><span class="s1">&#39;example.vlsv&#39;</span><span class="p">)</span>
+<span class="n">three_cut</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">calculations</span><span class="o">.</span><span class="n">cut3d</span><span class="p">(</span> <span class="n">vlsvReader</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mf">4e6</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mf">4e6</span><span class="p">,</span> <span class="n">zmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zmax</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;rho&quot;</span> <span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1"># Now three_cut is a three-dimensional array (x,y,z), but we can transform it into a 2-d array (x,y) with:</span>
+<span class="n">dimensions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span> <span class="n">three_cut</span> <span class="p">)</span>
+<span class="n">two_cut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span> <span class="n">three_cut</span><span class="p">,</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.cut_through">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">cut_through</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.cut_through" title="Link to this definition"></a></dt>
+<dd><p>Returns cell ids and distances from point 1 for every cell in a line between given point1 and point2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>) – Some open VlsvReader</p></li>
+<li><p><strong>point1</strong> – The starting point of a cut-through line</p></li>
+<li><p><strong>point2</strong> – The ending point of a cut-through line</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an array containing cell ids, coordinates and distances in the following format: [cell ids, distances, coordinates]. NB. Last cellid is a duplicate.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span>
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;testfile.vlsv&quot;</span><span class="p">)</span>
+<span class="n">cut_through</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">(</span><span class="n">vlsvReader</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mf">5e6</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">cellids</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">distances</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Cell ids: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cellids</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Distance from point 1 for every cell: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.cut_through_curve">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">cut_through_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.cut_through_curve" title="Link to this definition"></a></dt>
+<dd><p>Returns cell ids and distances from point 1 for every cell in a line between given point1 and point2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>) – Some open VlsvReader</p></li>
+<li><p><strong>point1</strong> – The starting point of a cut-through line</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an array containing cell ids, edge distances, and the coordinates of edges in the following format: [cell ids, distances, coordinates]. NB. Last cellid is a duplicate.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span>
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;testfile.vlsv&quot;</span><span class="p">)</span>
+<span class="n">cut_through_curve</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">(</span><span class="n">vlsvReader</span><span class="p">,</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mf">5e6</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">cellids</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">distances</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Cell ids: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cellids</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Distance from point 1 for every cell: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.cut_through_step">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">cut_through_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.cut_through_step" title="Link to this definition"></a></dt>
+<dd><p>Returns cell ids and distances from point 1 to point 2, returning not every cell in a line
+but rather the amount of cells which corresponds with the largest axis-aligned component of the line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>) – Some open VlsvReader</p></li>
+<li><p><strong>point1</strong> – The starting point of a cut-through line</p></li>
+<li><p><strong>point2</strong> – The ending point of a cut-through line</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an array containing cell ids, coordinates and distances in the following format: [cell ids, distances, coordinates]</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span><span class="p">:</span>
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;testfile.vlsv&quot;</span><span class="p">)</span>
+<span class="n">cut_through</span> <span class="o">=</span> <span class="n">cut_through_step</span><span class="p">(</span><span class="n">vlsvReader</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mf">5e6</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">cellids</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">distances</span> <span class="o">=</span> <span class="n">cut_through</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Cell ids: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cellids</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Distance from point 1 for every cell: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.dynamic_field_tracer">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">dynamic_field_tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.dynamic_field_tracer" title="Link to this definition"></a></dt>
+<dd><p>Field tracer in a dynamic time frame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader_list</strong> – List of vlsv readers</p></li>
+<li><p><strong>x0</strong> – The starting point for the streamlines</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.epsilon_M">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">epsilon_M</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.67262192595e-27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bulk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bimaxwellian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dummy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.epsilon_M" title="Link to this definition"></a></dt>
+<dd><p>Calculates the ‘non-maxwellianity’ parameter for a distribution function f_i and its corresponding Maxwellian g_M.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – VlsvReader containing VDF data</p></li>
+<li><p><strong>cell</strong> – CellID for the queried cell</p></li>
+</ul>
+</dd>
+<dt class="field-even">Kword pop<span class="colon">:</span></dt>
+<dd class="field-even"><p>Population to calculate the parameter for</p>
+</dd>
+<dt class="field-odd">Kword m<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Species mass (default: m_p)</p>
+</dd>
+<dt class="field-even">Kword bulk<span class="colon">:</span></dt>
+<dd class="field-even"><p>Bulk file name to use for moments (if available and needed)</p>
+</dd>
+<dt class="field-odd">Kword B<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional, user-given magnetic field vector for a bimaxwellian model distribution</p>
+</dd>
+<dt class="field-even">Kword model<span class="colon">:</span></dt>
+<dd class="field-even"><p>VDF model to be used. Available models “maxwellian”, “bimaxwellian” (default)</p>
+</dd>
+<dt class="field-odd">Kword normorder<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Norm used for model-data distance measure (default: 1)</p>
+</dd>
+<dt class="field-even">Kword norm<span class="colon">:</span></dt>
+<dd class="field-even"><p>Constant norm (default 2, see below)</p>
+</dd>
+<dt class="field-odd">Kword threshold<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Disregard vspace cells under this threshold [0]</p>
+</dd>
+<dt class="field-even">Kword dummy<span class="colon">:</span></dt>
+<dd class="field-even"><p>If not None, generate dummy data for e.g. integration.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>scalar, non-Maxwellianity parameter for given model and norm</p>
+</dd>
+</dl>
+<p>The definition is given by Graham et al. (2021):
+(1/2n) * integral(|f_i - g_M|) d^3v</p>
+<p>valued between 0 (bi-Maxwellian) and 1 (complete deviation from a bi-Maxwellian).</p>
+<p>NOTE that this is different to the definition by Greco et al. (2012):
+(1/n) * sqrt(integral((f_i - g_M)^2) d^3v)</p>
+<p>examples comparing these two definitions can be found in Settino et al. (2021).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.fourier">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">fourier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kaiserwindowparameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.fourier" title="Link to this definition"></a></dt>
+<dd><p>Function for returning fourier series and frequencies of some given arrays t and y</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Time</p></li>
+<li><p><strong>y</strong> – Some variable data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the frequencies, new time variables and frequencies</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>return format: [FFT, frequencies, t, y]</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>t must have a constant time stepping</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span> <span class="n">usage</span><span class="p">:</span>
+<span class="n">fourier_data</span> <span class="o">=</span> <span class="n">fourier</span><span class="p">(</span> <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">rho_data</span><span class="p">,</span> <span class="n">kaiserwindowparameter</span><span class="o">=</span><span class="mi">14</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.gyrophase_angles_from_file">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">gyrophase_angles_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.gyrophase_angles_from_file" title="Link to this definition"></a></dt>
+<dd><p>Calculates the gyrophase angle angle distribution for a given cell with a given file
+:param vlsvReader:        Some VlsvReader class with a file open
+:type vlsvReader:         <code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>
+:param cellid:            The cell id whose gyrophase angle the user wants NOTE: The cell id must have a velocity distribution!
+:returns: gyrophase angles and avgs [gyro_angles, avgs]</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Example usage:
+vlsvReader = VlsvReader(“fullf.0001.vlsv”)
+result = gyrophase_angles_from_file( vlsvReader=vlsvReader, cellid=1924)
+# Plot the data
+import matplotlib.pyplot as plt
+plt.hist(result[0].data, weights=result[1].data, bins=100, log=False)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.lineout">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">lineout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.lineout" title="Link to this definition"></a></dt>
+<dd><p>Returns a line cut-through from a given VLSV file for distance, coordinates and variable values. The main difference between this and cut_through is that this function interpolates a given variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>) – Some open VlsvReader</p></li>
+<li><p><strong>point1</strong> – The starting point of a cut-through line</p></li>
+<li><p><strong>point2</strong> – The ending point of a cut-through line</p></li>
+<li><p><strong>variable</strong> – Variable to return</p></li>
+<li><p><strong>operator</strong> – The operator for the variable, for example “x” for x-component or “magnitude” for magnitude</p></li>
+<li><p><strong>interpolation_order</strong> – Order of interpolation (0 or 1), defaults to 1</p></li>
+<li><p><strong>points</strong> – Number of points to return</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple with output: (distance, coordinates, variable_values)</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span> <span class="c1"># import analysator</span>
+
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">vlsvfile</span><span class="o">.</span><span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;testfile.vlsv&quot;</span><span class="p">)</span> <span class="c1"># Open a vlsv file</span>
+<span class="n">lineout_rho</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">calculations</span><span class="o">.</span><span class="n">lineout</span><span class="p">(</span> <span class="n">vlsvReader</span><span class="o">=</span><span class="n">vlsvReader</span><span class="p">,</span> <span class="n">point1</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0e5</span><span class="p">,</span> <span class="mf">1.0e6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">point2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0e5</span><span class="p">,</span> <span class="mf">2.0e6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="n">interpolation_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="mi">100</span> <span class="p">)</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">lineout_rho</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="n">lineout_rho</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">lineout_rho</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.pitch_angles">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">pitch_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasmaframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vcut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vcutmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.pitch_angles" title="Link to this definition"></a></dt>
+<dd><p>Calculates the pitch angle distribution for a given cell</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> – Some VlsvReader class with a file open. Can be overriden by keywords.</p></li>
+<li><p><strong>cellid</strong> – The cell id whose pitch angle the user wants
+NOTE: The cell id must have a velocity distribution!</p></li>
+</ul>
+</dd>
+<dt class="field-even">Kword filename<span class="colon">:</span></dt>
+<dd class="field-even"><p>path to .vlsv file to use for input.</p>
+</dd>
+<dt class="field-odd">Kword filedir<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optionally provide directory where files are located and use step for bulk file name</p>
+</dd>
+<dt class="field-even">Kword step<span class="colon">:</span></dt>
+<dd class="field-even"><p>output step index, used for constructing output (and possibly input) filename</p>
+</dd>
+<dt class="field-odd">Kword nbins<span class="colon">:</span></dt>
+<dd class="field-odd"><p>How many bins to use for the distribution</p>
+</dd>
+<dt class="field-even">Kword cosine<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if returning the pitch angles as a cosine(alpha) plot [-1,1].
+If false, returns as pitch angle in degrees [0,180].</p>
+</dd>
+<dt class="field-odd">Kword plasmaframe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the user wants to get the pitch angle distribution
+in the plasma frame (for this population).
+If set to a string, will try to use the string as a variable for
+the frame to transform into.
+If set to a 3-element vector, will use that frame instead.</p>
+</dd>
+<dt class="field-even">Kword vcut<span class="colon">:</span></dt>
+<dd class="field-even"><p>Set to True to ignore velocity cells below 2x the thermal speed.
+If set to a number, will use that velocity in m/s instead.</p>
+</dd>
+<dt class="field-odd">Kword vcutmax<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Set to True to ignore velocity cells above 2x the thermal speed.
+If set to a number, will use that velocity in m/s instead.</p>
+</dd>
+<dt class="field-even">Kword outputdir<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional (recommended) method to save results to a file in the given directory.
+If directory does not exist, it will be created. Filenames within directory are
+generated automatically.</p>
+</dd>
+<dt class="field-odd">Kword outputfile<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Provide exact output file name (including complete path)</p>
+</dd>
+<dt class="field-even">Kword pop<span class="colon">:</span></dt>
+<dd class="field-even"><p>Active population, defaults to proton (avgs)</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pitch angles and avgs [pitch_angles, avgs]</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage:</span>
+<span class="n">vlsvReader</span> <span class="o">=</span> <span class="n">VlsvReader</span><span class="p">(</span><span class="s2">&quot;restart.0000798.vlsv&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pitch_angles</span><span class="p">(</span> <span class="n">vlsvReader</span><span class="o">=</span><span class="n">vlsvReader</span><span class="p">,</span> <span class="mi">1924</span><span class="p">,</span> <span class="n">cosine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">plasmaframe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">outputdir</span><span class="o">=</span><span class="s2">&quot;/wrk/username/pitchangledirectory/&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.static_field_tracer">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">static_field_tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'+'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bvar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'B'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_inner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.static_field_tracer" title="Link to this definition"></a></dt>
+<dd><p>Field tracer in a static frame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlsvReader</strong> – An open vlsv file</p></li>
+<li><p><strong>x</strong> – Starting point for the field trace</p></li>
+<li><p><strong>max_iterations</strong> – The maximum amount of iteractions before the algorithm stops</p></li>
+<li><p><strong>dx</strong> – One iteration step length</p></li>
+<li><p><strong>direction</strong> – ‘+’ or ‘-’ or ‘+-’ Follow field in the plus direction or minus direction</p></li>
+<li><p><strong>bvar</strong> – String, variable name to trace [default ‘B’]</p></li>
+<li><p><strong>centering</strong> – String, variable centering: ‘face’, ‘volume’, ‘node’ [defaults to ‘face’]</p></li>
+<li><p><strong>boundary_inner</strong> – Float, stop propagation if closer to origin than this value [default -1]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of coordinates</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.static_field_tracer_3d">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">static_field_tracer_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction='+'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_var='vg_b_vol'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_condition=&lt;function</span> <span class="pre">default_stopping_condition&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centering=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.static_field_tracer_3d" title="Link to this definition"></a></dt>
+<dd><p>static_field_tracer_3d() integrates along the (static) field-grid vector field to calculate a final position. 
+Code uses forward Euler method to conduct the tracing.
+Based on Analysator’s static_field_tracer()
+:Inputs:</p>
+<blockquote>
+<div><p>param vlsvReader:      A vlsvReader object (~an open .vlsv file)</p>
+<dl class="simple">
+<dt>param coord_list:      a list of 3-element array-like initial coordinates [ [x1,y1,z1], [x2,y2,z2], … ] ::</dt><dd><p>if considering just a single starting point, the code accepts a 3-element array-like object [x1,y1,z1]</p>
+</dd>
+</dl>
+<p>param max_iterations:  The maximum number of iterations (int) before the algorithm stops. Total traced length is dx*max_iterations</p>
+<p>param dx:              One iteration step length [meters] (ex. dx=1e4 for typical applications)</p>
+<p>keyword direction:     ‘+’ or ‘-’ or ‘+-’ Follow field in the plus direction, minus direction, or both</p>
+<dl>
+<dt>keyword grid_var:      Variable to be traced (A string)</dt><dd><dl>
+<dt>options include:</dt><dd><dl>
+<dt>grid_var = some string</dt><dd><p>grid_var = ‘vg_b_vol’: AMR-grid B-field
+grid_var =’fg_b’: fieldsolver grid B-field, grid_var=’fg_e’: fieldsolver grid E-field
+static_field_tracer_3d() will load the appropriate variable via the vlsvReader object
+NOTE: volumetric variables, with ‘_vol’ suffix, may not work as intended. Use face-centered values: ‘fg_b’, ‘fg_e’ etc.</p>
+</dd>
+<dt>grid_var = some fieldsolver-grid (“fg”) array.          dimensions [dimx,dimy,dimz,3]</dt><dd><p>ex. fg = vlsvobj.read_variable(‘fg_b’)
+field grid data is already loaded externally using read_variable() method (see vlsvreader.py).
+If fg keyword is set this way, the input vlsvReader is only referred to for metadata (esp. grid dimensions)</p>
+<blockquote>
+<div><p>keyword stop_condition: Boolean array (seed_coords.shape[0],)</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Determine when the iteration stop, for the vg trace only
+If not specified, it will always be True for each seed points.
+eg. def my_stop(points):</p>
+<blockquote>
+<div><p>distances = np.linalg.norm(points[:,:],axis = 1)
+return (distances &lt;= lower_bound) | (distances &gt;= upper_bound)</p>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>points_traced — a 3d numpy array [len(seed_coords),max_iterations (or 2*max_iterations-1 for ‘+-‘),3]
+Non-traced sections (e.g. iterations after reaching outer boundaries) filled with np.nan</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>keyword centering:     Set to a string (‘face’ or ‘edge’) indicating whether the fg variable is face- or edge-centered</dt><dd><p>If keyword fg == ‘fg_b’, then centering = ‘face’ (overriding input)
+If keyword fg == ‘fg_e’, then centering = ‘edge’ (overriding input)</p>
+</dd>
+<dt>EXAMPLE:            vlsvobj = pytools.vlsvfile.VlsvReader(vlsvfile) </dt><dd><p>fg_b = vlsvobj.read_variable(‘fg_b’)
+traces = static_field_tracer_3d( vlsvobj, [[5e7,0,0], [0,0,5e7]], 10, 1e5, direction=’+’, fg = fg_b )</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.themis_observation_from_file">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">themis_observation_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[1,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">1]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">countrates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binOffset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.0,</span> <span class="pre">0.0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.themis_observation_from_file" title="Link to this definition"></a></dt>
+<dd><p>Calculates artificial THEMIS EMS observation from the given cell
+:param vlsvReader:        Some VlsvReader class with a file open
+:type vlsvReader:         <code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>
+:param cellid:            The cell id where the distribution is supposet to be sampled NOTE: The cell id must have a velocity distribution!
+:param matrix:            Matrix to transform velocities from simulation space into detector space (use simulation_to_spacecraft_frame helper function)
+:param countrates: Transform phase space densities into count rates?
+:param interpolate: interpolate into detector bins?
+:param binOffset: offset bin allocation in (angle, energy) by this amount (used to align polar plots)
+:returns: detector bins angles, energies and counts [bin_thetas,energies,min,max,counts]</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Example usage:
+vlsvReader = VlsvReader(“fullf.0001.vlsv”)
+angles, energies, vmin, vmax, values = themis_observation_from_file( vlsvReader=self.vlsvReader, cellid=cellid)
+# plot:
+grid_r, grid_theta = np.meshgrid(energies,angles)
+fig,ax=pl.subplots(subplot_kw=dict(projection=”polar”),figsize=(12,10))
+ax.set_title(“Detector view at cell “ + str(cellid))
+cax = ax.pcolormesh(grid_theta,grid_r,values, norm=matplotlib.colors.LogNorm(vmin=vmin,vmax=vmax))
+pl.show()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.themis_plot_detector">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">themis_plot_detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0,</span> <span class="pre">1,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.themis_plot_detector" title="Link to this definition"></a></dt>
+<dd><p>Plots a view of the detector countrates using matplotlib
+:param vlsvReader:        Some VlsvReader class with a file open
+:type vlsvReader:         <code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>
+:param cellid:            The cell id where the distribution is supposet to be sampled NOTE: The cell id must have a velocity distribution!
+:param detector_axis:     detector axis direction (note: this is not spacecraft spin axis!)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.themis_plot_phasespace_contour">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">themis_plot_phasespace_contour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([1.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">1.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Vx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Vy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'proton'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.themis_plot_phasespace_contour" title="Link to this definition"></a></dt>
+<dd><p>Plots a contour view of phasespace, as seen by a themis detector, at the given cellID
+:param vlsvReader:        Some VlsvReader class with a file open
+:type vlsvReader:         <code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>
+:param cellid:            The cell id where the distribution is supposet to be sampled NOTE: The cell id must have a velocity distribution!
+:param plane_x and plane_y: x and y direction of the resulting plot plane</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.themis_plot_phasespace_helistyle">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">themis_plot_phasespace_helistyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([1.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">1.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Vx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Vy'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.themis_plot_phasespace_helistyle" title="Link to this definition"></a></dt>
+<dd><p>Plots a view of phasespace, as seen by a themis detector, at the given cellID, in the style that heli likes.
+:param vlsvReader:        Some VlsvReader class with a file open
+:type vlsvReader:         <code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>
+:param cellid:            The cell id where the distribution is supposet to be sampled NOTE: The cell id must have a velocity distribution!
+:param smooth:            Smooth re-gridded phasespace before plotting
+:param plane_x and plane_y: x and y direction of the resulting plot plane</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.vlsv_intpol_file">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">vlsv_intpol_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_vlsv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_orbit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.vlsv_intpol_file" title="Link to this definition"></a></dt>
+<dd><p>Writes interpolated values of variables in ascii file
+:param file_vlsv:             VLSV file
+:param file_orbit:            Orbit file (columns: x,y,z or t,x,y,z)
+:param varlist:               Variable list
+:param file_output:           Output ascii file (columns: x,y,z,cellid,var1,var2,var3,…)
+:returns: none</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span>
+<span class="n">pt</span><span class="o">.</span><span class="n">calculations</span><span class="o">.</span><span class="n">vlsv_intpol_file</span><span class="p">(</span><span class="s2">&quot;state00040000.vlsv&quot;</span><span class="p">,</span><span class="s2">&quot;orbit.dat&quot;</span><span class="p">,[</span><span class="s2">&quot;cellB&quot;</span><span class="p">,</span><span class="s2">&quot;n_H+sw_ave&quot;</span><span class="p">],</span><span class="s2">&quot;output.dat&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytools.calculations.vlsv_intpol_points">
+<span class="sig-prename descclassname"><span class="pre">pytools.calculations.</span></span><span class="sig-name descname"><span class="pre">vlsv_intpol_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlsvReader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytools.calculations.vlsv_intpol_points" title="Link to this definition"></a></dt>
+<dd><p>Returns interpolated values of variables at given points
+:param vlsvReader:            Some open VlsvReader
+:type vlsvReader:             <code class="xref py py-class docutils literal notranslate"><span class="pre">vlsvfile.VlsvReader</span></code>
+:param points:                Coordinate points
+:param varlist:               Variable list, if empty all variables are got
+:param operator:              The operator for the variable, for example “x” for x-component or “magnitude” for magnitude
+:param interpolation_order:   Order of interpolation (0 or 1), defaults to 1
+:returns: A tuple with output: (coordinates,variable_values,header_string)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">f</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">vlsvfile</span><span class="o">.</span><span class="n">VlsvReader</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;state00040000.vlsv&quot;</span><span class="p">)</span>
+<span class="n">mesh_limits</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_spatial_mesh_extent</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">mesh_limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">mesh_limits</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># points along x-axis</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">points</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">]))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">varlist</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cellB&quot;</span><span class="p">,</span><span class="s2">&quot;n_H+sw_ave&quot;</span><span class="p">]</span>
+<span class="p">[</span><span class="n">crd</span><span class="p">,</span><span class="n">cellids</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">hstr</span><span class="p">]</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">calculations</span><span class="o">.</span><span class="n">vlsv_intpol_points</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">points</span><span class="p">,</span><span class="n">varlist</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">crd</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span><span class="o">=</span><span class="n">crd</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">z</span><span class="o">=</span><span class="n">crd</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">Bx</span><span class="o">=</span><span class="n">params</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">By</span><span class="o">=</span><span class="n">params</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Bz</span><span class="o">=</span><span class="n">params</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">n</span><span class="o">=</span><span class="n">params</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../plot/" class="btn btn-neutral float-left" title="plot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../vlsvfile/" class="btn btn-neutral float-right" title="vlsvfile" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, University of Helsinki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
